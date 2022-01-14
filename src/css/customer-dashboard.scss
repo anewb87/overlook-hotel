@@ -1,0 +1,31 @@
+.customer-dashboard-display {
+  @include flex-column;
+}
+
+.booking-history {
+  @include size (50%, 25%);
+  background-color: $opaque-white;
+  justify-content: center;
+  border: 5px solid $dark-green;
+
+
+}
+
+
+.bookings-list-container {
+  @include flex-column;
+  justify-content: space-between;
+  background-color: red;
+  overflow: auto;
+}
+
+// .booking-history-list {
+//      display: flex;
+//      flex-direction: column;
+//      justify-content: space-between;
+//      height: 50%;
+//      background-color: $lighter-backgrounds;
+//      overflow: auto;
+//      border-radius: 10px;
+//      border: 2px solid $guest-history-border
+//    }
