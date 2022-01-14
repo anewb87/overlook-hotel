@@ -1,11 +1,10 @@
 header {
   @include size(10%, 100%);
+  @include flex-style(row, space-between);
   background-color: $opaque-white;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  // @include left-right-padding(20px, 20px);
   //justify-content: space-around;
-  @include left-right-padding(20px, 20px);
 }
 
 // .logo {
@@ -21,4 +20,9 @@ h1 {
 
 h2 {
   font-weight: 400;
+  padding-right: 30px;
+}
+
+.logo {
+  padding-left: 30px;
 }
