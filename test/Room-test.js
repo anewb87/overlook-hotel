@@ -11,7 +11,7 @@ describe('Room', () => {
 
   beforeEach(() => {
 
-    room = new Room(getRandomIndex(sampleRooms))
+    room = new Room(getRandomIndex(sampleRooms));
   });
 
   it('should be a function', () => {
