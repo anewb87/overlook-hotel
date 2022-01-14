@@ -19,6 +19,10 @@ body {
   // overflow-y: hidden;
 }
 
+// main {
+//   @include size(90%, 100%)
+// }
+
 .flex-column {
   display: flex;
   flex-direction: column;
