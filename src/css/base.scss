@@ -1,6 +1,51 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import '_mix-ins.scss';
+@import '_keyframes.scss';
+@import 'reset.scss';
+@import 'header';
+@import 'customer-dashboard';
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap');
+
+html, body, main {
+  @include size(100%, 100%);
+}
 
 body {
-  background: $primary-background;
+  font-family: 'Cinzel', serif;
+  background-image: $primary-background;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // overflow-y: hidden;
 }
+
+
+
+.book-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-decoration: underline 0.15em $transparent;
+  transition: text-decoration-color 400ms
+}
+
+.book-button:hover {
+  cursor: pointer;
+  text-decoration-color: $dark-green;
+}
+
+.hidden {
+  display: none;
+}
+  /* Scale from center- can't get this to work yet so have above that's ok for now*/
+// .book-button:after {
+//   opacity 1;
+//   transform: scale(0);
+//   transform-origin: center;
+// }
+//
+// .book-button:hover::after,
+// .book-button:focus::after{
+//   transform: scale(1);
+// }

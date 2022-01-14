@@ -1,0 +1,19 @@
+header {
+  @include size(10%, 100%);
+  background-color: $opaque-white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //justify-content: space-around;
+  @include left-right-padding(20px, 20px);
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 25px;
+  animation: slidein 2s;
+}
+
+h2 {
+  font-weight: 400;
+}
