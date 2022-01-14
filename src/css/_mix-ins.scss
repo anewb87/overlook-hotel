@@ -12,3 +12,8 @@
   margin-left: $left;
   margin-right: $right;
 }
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
