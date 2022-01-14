@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import Booking from '../src/classes/Booking';
-import sampleBookings from '../src/data/sampleRooms';
+import sampleBookings from '../src/data/sampleBookings';
 
 const getRandomIndex = (array) => {
   return array[Math.floor(Math.random() * array.length)];
@@ -26,7 +26,7 @@ describe('Booking', () => {
   });
 
   it('should have a booking id that is a random string of 17 characters', () => {
-    expect(booking.id.lengh).to.equal(17);
+    expect(booking.id.length).to.equal(17);
   });
 
   it('should keep track of who books the room with a userID that is a number', () => {
@@ -44,4 +44,13 @@ describe('Booking', () => {
   it('should have a specific formatting for the booking date', () => {
     expect(booking.date.length).to.equal(10);
   });
+
+  it('should have a room number for the booking', () => {
+    expect(booking.roomNumber).to.be.a('number')
+  });
+
+  it('should have a positive room number for the booking', () => {
+    expect(booking.roomNumber).to.be.greaterThan(0);
+  });
+
 })
