@@ -10,11 +10,11 @@ describe('Customer', () => {
     let customer;
 
     beforeEach(() => {
-      customer = new Customer(getRandomIndex(smapleCustomers))
+      customer = new Customer(getRandomIndex(sampleCustomers));
     });
 
     it('should be a function', () => {
-      expect(customer).to.be.a('function');
+      expect(Customer).to.be.a('function');
     });
 
     it('should be and instance of User', () => {
