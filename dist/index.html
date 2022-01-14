@@ -10,7 +10,7 @@
     <main>
 
       <header>
-        <img src="..images/hood-logo.png" alt="hood overlook hotel logo"/>
+        <img class="logo" src=".images/hood-logo.png" alt="hood overlook hotel logo"/>
           <!-- want to use this logo, figure out what's up -->
         <h1>HOOD OVERLOOK HOTEL</h1>
         <h2 class="user-name-js">welcome, user name</h2>
@@ -19,16 +19,35 @@
       <section class="login-display-js login-display hidden">
       </section>
 
-      <section class="customer-dashboard-display-js customer-dashboard-display">
-        <aside class="booking-history">
+      <section class="customer-display-js customer-display">
+        <aside class="booking-history-section">
           <p>my bookings</p>
           <section class="bookings-list-container">past and current bookings</section>
           <p>my total:</p>
         </aside>
-        <section>
-
+        <section class="make-booking-section">
+          <p>book a room</p>
+          <div class="book-a-room-container">
+            <div>
+              <div>
+                <p>select a date</p>
+                <input type="date" id ="dateInput" min="2022-01-18" max="2022-02-28"/>
+                <button id ="searchForRooms">search</button>
+              </div>
+              <div>
+                <p>room type</p>
+                <button>single room</button>
+                <button>junior suite</button>
+                <button>suite</button>
+                <button>residential suite</button>
+              </div>
+            </div>
+            <div>
+              <p>available rooms</p>
+              <section class="available-list-container">we deeply regret that we have no rooms matching your search</section>
+            </div>
+          </div>
         </section>
-
       </section>
 
       <section class="manager-dashboard-display-js manager-dashboard-display hidden">

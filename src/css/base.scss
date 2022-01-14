@@ -19,6 +19,10 @@ body {
   // overflow-y: hidden;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 
 
 .book-button {
@@ -34,6 +38,8 @@ body {
   cursor: pointer;
   text-decoration-color: $dark-green;
 }
+
+
 
 .hidden {
   display: none;

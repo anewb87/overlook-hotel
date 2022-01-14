@@ -8,6 +8,11 @@ header {
   @include left-right-padding(20px, 20px);
 }
 
+// .logo {
+//   @include size (3px, 3px);
+// tried making really small to see if perhaps that was the issue but it's not
+// }
+
 h1 {
   font-weight: 800;
   font-size: 25px;

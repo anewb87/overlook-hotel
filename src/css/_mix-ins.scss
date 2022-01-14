@@ -13,7 +13,8 @@
   margin-right: $right;
 }
 
-@mixin flex-column() {
-  display: flex;
-  flex-direction: column;
-}
+@mixin flex-style($direction, $content) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+  }
