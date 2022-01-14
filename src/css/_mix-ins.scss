@@ -2,3 +2,13 @@
   height: $height;
   width: $width;
 }
+
+@mixin left-right-padding($left, $right) {
+  padding-left: $left;
+  padding-right: $right;
+}
+
+@mixin left-right-margin($left, $right) {
+  margin-left: $left;
+  margin-right: $right;
+}

@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap" rel="stylesheet">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-  <nav>
-    <p>To Be Replaced with Icon</p>
-    <img src="..images/hood-logo.png" alt="hood overlook hotel logo"/>
-    <button class="book-button">BOOK ROOM</button>
-  </nav>
-  <main>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack Starter Kit</title>
+  </head>
+  <body>
+    <main>
 
-  </main>
+      <header>
+        <img src="..images/hood-logo.png" alt="hood overlook hotel logo"/>
+          <!-- want to use this logo, figure out what's up -->
+        <h1>HOOD OVERLOOK HOTEL</h1>
+        <h2 class="user-name-js">welcome, user name</h2>
+      </header>
+
+      <section class="login-display-js login-display hidden">
+      </section>
+
+      <section class="customer-dashboard-display-js customer-dashboard-display">
+        <aside class="">
+
+        </aside>
+        <section>
+
+        </section>
+
+      </section>
+
+      <section class="manager-dashboard-display-js manager-dashboard-display hidden">
+      </section>
 
 
+    </main>
+    <!-- <button class="book-button">BOOK ROOM</button> -->
 
-</body>
+    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    <script src="bundle.js"></script>
+  </body>
 </html>
