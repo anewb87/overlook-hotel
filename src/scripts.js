@@ -37,9 +37,7 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
     [customersData, roomsData, bookingsData] = [data[0], data[1], data[2]]
   })
   .then(() => {
-    customerIndex = getRandomIndex(customersData.customers)
-    currentCustomer = new Customer(customersData.customers[customerIndex]);
-    console.log(currentCustomer)
+    getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
   })
     //put catch here
 
@@ -53,11 +51,16 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
 
 
 
-const getCustomerInfo = (bookingData, roomData, currentCustomer) => {
-  currentCustomer.getCustomerBookings(bookingData);
-  currentCustomer.getTotalSpent(roomData);
-  domUpdates.populateCustomerInfo(currentCustomer, roomData)
-  console.log("current Customer round 2", currentCustomer)
+const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
+
+  customerIndex = getRandomIndex(customersData.customers)
+  currentCustomer = new Customer(customersData.customers[customerIndex]);
+
+
+  currentCustomer.getCustomerBookings(bookingsData.bookings);
+  console.log(currentCustomer)
+  currentCustomer.getTotalSpent(roomsData.rooms);
+  domUpdates.populateCustomerInfo(currentCustomer, roomsData)
 }
 
 function getRandomIndex(array) {
