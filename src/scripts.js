@@ -7,63 +7,61 @@ import Customer from '../src/classes/Customer';
 import {
   fetchCustomers,
   fetchRooms,
-  fetchBookings,
+  fetchBookings
 } from './apiCalls';
+
+// import {
+//   fetchAllData
+// } from './apiCalls';
+
+import {
+  domUpdates
+} from './domUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+//import '.images/hood-logo.png'
 
 //GLOBAL VARIABLES
-let customerData;
-let roomData;
-let bookingData;
+let customersData;
+let roomsData;
+let bookingsData;
 let customerIndex;
 let currentCustomer;
 
 
-
 //FUNCTIONS
-const getCustomer = () => {
-  fetchCustomers()
+
+Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
   .then(data => {
-    console.log('data:', typeof data, data)
-    customerData = data;
-    console.log(typeof customerData)
-    currentCustomer = new Customer(customerData[0]);
-    console.log(currentCustomer);
+    [customersData, roomsData, bookingsData] = [data[0], data[1], data[2]]
   })
-}
+  .then(() => {
+    getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
+  })
+    //put catch here
 
-window.onload = function() {
-  getCustomer()
-}
+  //I want to fetch all the data and then instantiate the classes
 
-// const getRooms = () => {
-//   fetchRooms()
-//   .then(data => {
-//
-//   })
+// window.onload = function() {
+//   // getCustomerInfo()
+//   // domUpdates.displayBookedRooms()
 // }
-//
-// const getBookings = () => {
-//   fetchBookings()
-//   .then(data => {
-//
-//   })
-// }
-//
-//
-// Promise.all([fetchCustomers, fetchRooms, fetchBookings])
-//   .then(data => {
-//     [customerData, roomData, bookingData] = [data[0], data[1], data[2]];
-//     customerIndex = getRandomIndex(customerData);
-//     console.log(customerData)
-//     currentCustomer = new Customer(customerData[customerIndex])
-//     console.log(currentCustomer)
-//
-//   })
 
 
+
+
+const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
+
+  customerIndex = getRandomIndex(customersData.customers)
+  currentCustomer = new Customer(customersData.customers[customerIndex]);
+
+
+  currentCustomer.getCustomerBookings(bookingsData.bookings);
+  console.log(currentCustomer)
+  currentCustomer.getTotalSpent(roomsData.rooms);
+  domUpdates.populateCustomerInfo(currentCustomer, roomsData)
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);

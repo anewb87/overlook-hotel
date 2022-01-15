@@ -13,6 +13,7 @@ let fetchBookings = () => {
   .then(response => response.json())
 }
 
+
 // let postBooking = (booking) => {
 //   return fetch("http://localhost:3001/api/v1/bookings", {
 //     method: 'POST
@@ -57,6 +58,5 @@ let fetchBookings = () => {
 //   // .then(json => /*do something with json*/)
 //   .catch(err => console.log(err));
 // }
-
 
 export {fetchCustomers, fetchRooms, fetchBookings}
