@@ -39,10 +39,6 @@ describe('Customer', () => {
       expect(customer.bookings).to.deep.equal([])
     });
 
-    it('should have a total amount spent by the customer on rooms', () => {
-      expect(customer.totalSpent).to.equal(0);
-    });
-
     it('should have a method that gets all bookings made by this customer', () => {
       customer.getCustomerBookings(sampleBookings);
       expect(customer.bookings).to.deep.equal([sampleBookings[4], sampleBookings[7]]);
