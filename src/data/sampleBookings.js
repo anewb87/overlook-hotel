@@ -47,7 +47,14 @@ const sampleBookings = [
     "date": "2022/01/11",
     "roomNumber": 9,
     "roomServiceCharges": []
-  }
+  },
+  {
+    "id": "5fwrgu4i7k55hl6tq",
+    "userID": 1,
+    "date": "2022/03/05",
+    "roomNumber": 25,
+    "roomServiceCharges": []
+  },
 ];
 
 export default sampleBookings;
