@@ -1,46 +1,17 @@
-// let fetchCustomers = () => {
-//   return fetch("http://localhost:3001/api/v1/customers")
-//   .then(response => response.json())
-// }
-//
-// let fetchRooms = () => {
-//   return fetch("http://localhost:3001/api/v1/rooms")
-//   .then(response => response.json())
-// }
-//
-// let fetchBookings = () => {
-//   return fetch("http://localhost:3001/api/v1/bookings")
-//   .then(response => response.json())
-// }
-
-const fetchAllData () => {
-
-  const fetchCustomers = () => {
-    return fetch("http://localhost:3001/api/v1/customers")
-    .then(response => response.json())
-    }
-
-  const fetchRooms = () => {
-    return fetch("http://localhost:3001/api/v1/rooms")
-    .then(response => response.json())
-    }
-
-  const fetchBookings = () => {
-    return fetch("http://localhost:3001/api/v1/bookings")
-    .then(response => response.json())
-  }
-
-
-
+let fetchCustomers = () => {
+  return fetch("http://localhost:3001/api/v1/customers")
+  .then(response => response.json())
 }
 
-//work on catches still
+let fetchRooms = () => {
+  return fetch("http://localhost:3001/api/v1/rooms")
+  .then(response => response.json())
+}
 
-//think I'll need to return
-
-
-
-
+let fetchBookings = () => {
+  return fetch("http://localhost:3001/api/v1/bookings")
+  .then(response => response.json())
+}
 
 
 // let postBooking = (booking) => {
@@ -88,7 +59,4 @@ const fetchAllData () => {
 //   .catch(err => console.log(err));
 // }
 
-
-export {fetchAllData}
-
-// export {fetchCustomers, fetchRooms, fetchBookings}
+export {fetchCustomers, fetchRooms, fetchBookings}
