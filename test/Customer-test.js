@@ -39,6 +39,10 @@ describe('Customer', () => {
     expect(customer.availableRooms).to.deep.equal([])
   });
 
+  it('should have a propery that holds filtered rooms', () => {
+    expect(customer.filteredRooms).to.deep.equal([])
+  });
+
   it('should have a method that gets all bookings made by this customer', () => {
     customer.getCustomerBookings(sampleBookings);
     expect(customer.bookings).to.deep.equal([sampleBookings[4], sampleBookings[7]]);
@@ -48,10 +52,16 @@ describe('Customer', () => {
     customer.getCustomerBookings(sampleBookings);
     customer.getTotalSpent(sampleRooms);
     expect(customer.totalSpent).to.equal(477.94);
-  })
+  });
 
   it('should have a method that gets available rooms', () => {
-    customer.getAvailableRooms("2022/03/05", sampleRooms, sampleBookings);
+    customer.getAvailableRooms('2022/03/05', sampleRooms, sampleBookings);
     expect(customer.availableRooms.length).to.equal(5)
-  })
+  });
+
+  it('should be able to filter by room type', () => {
+    customer.getAvailableRooms('2022/03/05', sampleRooms, sampleBookings)
+    customer.filterRoomsByType('single room');
+    expect(customer.filteredRooms.length).to.equal(3)
+  });
 })

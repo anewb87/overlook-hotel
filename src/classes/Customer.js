@@ -5,6 +5,7 @@ class Customer {
     this.bookings = [];
     this.totalSpent = 0;
     this.availableRooms = [];
+    this.filteredRooms = [];
   }
 
   getCustomerBookings(bookings) {
@@ -35,6 +36,12 @@ class Customer {
           this.availableRooms.push(room)
         }
       })
+    })
+  }
+
+  filterRoomsByType(roomType) {
+    this.filteredRooms = this.availableRooms.filter((room) => {
+      return room.roomType === roomType
     })
   }
 }
