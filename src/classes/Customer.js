@@ -13,7 +13,6 @@ class Customer {
   }
 
   getTotalSpent(rooms) {
-
     const total = this.bookings.reduce((acc, booking) => {
       rooms.forEach((room) => {
         if (booking.roomNumber === room.number) {

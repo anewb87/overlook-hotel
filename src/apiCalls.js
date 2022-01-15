@@ -1,17 +1,21 @@
-let fetchCustomers = () => {
-  return fetch("http://localhost:3001/api/v1/customers")
-  .then(response => response.json())
+const fetchAllData = () => {
+  let fetchCustomers = () => {
+    return fetch("http://localhost:3001/api/v1/customers")
+    .then(response => response.json())
+  }
+
+  let fetchRooms = () => {
+    return fetch("http://localhost:3001/api/v1/rooms")
+    .then(response => response.json())
+  }
+
+  let fetchBookings = () => {
+    return fetch("http://localhost:3001/api/v1/bookings")
+    .then(response => response.json())
+  }
 }
 
-let fetchRooms = () => {
-  return fetch("http://localhost:3001/api/v1/rooms")
-  .then(response => response.json())
-}
 
-let fetchBookings = () => {
-  return fetch("http://localhost:3001/api/v1/bookings")
-  .then(response => response.json())
-}
 
 // let postBooking = (booking) => {
 //   return fetch("http://localhost:3001/api/v1/bookings", {
@@ -59,4 +63,4 @@ let fetchBookings = () => {
 // }
 
 
-export {fetchCustomers, fetchRooms, fetchBookings}
+export {fetchAllData}

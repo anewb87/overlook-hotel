@@ -5,13 +5,16 @@
 import './css/base.scss';
 import Customer from '../src/classes/Customer';
 import {
-  fetchCustomers,
-  fetchRooms,
-  fetchBookings,
+  fetchAllData
 } from './apiCalls';
+
+import {
+  domUpdates
+} from './domUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
+//import '.images/hood-logo.png'
 
 //GLOBAL VARIABLES
 let customerData;
@@ -27,23 +30,33 @@ const getCustomer = () => {
   fetchCustomers()
   .then(data => {
     console.log('data:', typeof data, data)
-    customerData = data;
-    console.log(typeof customerData)
+    customerData = data.customers;
+    console.log('want this to be an array', typeof customerData)
     currentCustomer = new Customer(customerData[0]);
-    console.log(currentCustomer);
+    console.log('current customer***', currentCustomer);
   })
+  .then(data => getCustomerInfo())
 }
+
+//this isn't going to work. need to instantiate classes AFTER getting all the data, duh.
+//
 
 window.onload = function() {
-  getCustomer()
+
+
+  //getCustomer()
+  // domUpdates.displayBookedRooms()
 }
 
-// const getRooms = () => {
-//   fetchRooms()
-//   .then(data => {
-//
-//   })
-// }
+
+
+
+const getCustomerInfo = (bookingData, roomData, currentCustomer) => {
+  currentCustomer.getCustomerBookings(bookingData);
+  currentCustomer.getTotalSpent(roomData);
+  domUpdates.populateCustomerInfo(currentCustomer, roomData)
+}
+
 //
 // const getBookings = () => {
 //   fetchBookings()
