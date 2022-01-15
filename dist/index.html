@@ -23,7 +23,7 @@
       <section class="customer-display-js customer-display">
         <aside class="booking-history-section">
           <p>my bookings</p>
-          <section class="bookings-list-container bookings-list-container-js">past and current bookings</section>
+          <section class="bookings-list-container bookings-list-container-js"></section>
           <p class="total-js">my total:</p>
         </aside>
         <section class="make-booking-section">
@@ -31,9 +31,11 @@
           <div class="book-a-room-container">
             <div>
               <div>
-                <p>select a date</p>
-                <input type="date" id ="dateInput" min="2022-01-18" max="2022-02-28"/>
-                <button id ="searchForRooms">search</button>
+                <form>
+                  <label for="calendar">select a date:</label><br/>
+                  <input type="date" id="calendarDate" name="checkin" min="2022-01-18" max="2022-12-31">
+                  <input type="submit" id="selectDateButton" value="search">
+                </form>
               </div>
               <div>
                 <p>room type</p>
@@ -45,7 +47,7 @@
             </div>
             <div>
               <p>available rooms</p>
-              <section class="available-list-container">we deeply regret that we have no rooms matching your search</section>
+              <section class="available-list-container">we fiercely apologize that we have no rooms matching your search</section>
             </div>
           </div>
         </section>

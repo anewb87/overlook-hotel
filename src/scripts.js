@@ -15,7 +15,9 @@ import {
 // } from './apiCalls';
 
 import {
-  domUpdates
+  domUpdates,
+  selectDateButton,
+  selectedDate
 } from './domUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -28,13 +30,14 @@ let roomsData;
 let bookingsData;
 let customerIndex;
 let currentCustomer;
+let date;
 
 
 //FUNCTIONS
 
 Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
   .then(data => {
-    [customersData, roomsData, bookingsData] = [data[0], data[1], data[2]]
+    [customersData, roomsData, bookingsData] = [data[0].customers, data[1].rooms, data[2].bookings]
   })
   .then(() => {
     getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
@@ -53,16 +56,27 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
 
 const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
 
-  customerIndex = getRandomIndex(customersData.customers)
-  currentCustomer = new Customer(customersData.customers[customerIndex]);
+  customerIndex = getRandomIndex(customersData)
+  currentCustomer = new Customer(customersData[customerIndex]);
 
 
-  currentCustomer.getCustomerBookings(bookingsData.bookings);
-  console.log(currentCustomer)
-  currentCustomer.getTotalSpent(roomsData.rooms);
+  currentCustomer.getCustomerBookings(bookingsData);
+  currentCustomer.getTotalSpent(roomsData);
   domUpdates.populateCustomerInfo(currentCustomer, roomsData)
 }
 
-function getRandomIndex(array) {
+const getSelectedDate = () => {
+  date = selectedDate.value
+}
+
+const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 }
+
+
+
+//EVENT LISTENERS
+selectDateButton.addEventListener('click', function(e) {
+  e.preventDefault(),
+  getSelectedDate()
+});
