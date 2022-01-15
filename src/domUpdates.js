@@ -1,19 +1,22 @@
 //IMPORTS
-import {
-  currentCustomer,
-  roomData,
-}
-  from './scripts'
+// import {
+//   currentCustomer,
+//   roomsData,
+// }
+//   from './scripts'
+
 
 //GLOBAL VARIABLES
 
 //QUERY SELECTORS
+const selectDateButton = document.getElementById('selectDateButton')
+const selectedDate = document.getElementById('calendarDate')
 
-// const bookedContainer = document.querySelector('.bookings-list-container-js')
 
 
 
 //FUNCTIONS
+
 
 //DOM UPDATES OBJECT
 
@@ -25,7 +28,7 @@ let domUpdates = {
     document.querySelector('.total-js').innerText = `My Total: ${currentCustomer.totalSpent}`
 
     currentCustomer.bookings.forEach((booking) => {
-      const foundRoom = roomsData.rooms.find((room) => {
+      const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
       })
       document.querySelector('.bookings-list-container-js').innerHTML += `
@@ -40,12 +43,8 @@ let domUpdates = {
   }
 }
 
-
-
-
-//EVENT LISTENERS
-
-
 export {
- domUpdates
+ domUpdates,
+ selectDateButton,
+ selectedDate
 }

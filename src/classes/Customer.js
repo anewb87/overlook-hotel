@@ -4,6 +4,7 @@ class Customer {
     this.name = customer.name;
     this.bookings = [];
     this.totalSpent = 0;
+    this.availableRooms = [];
   }
 
   getCustomerBookings(bookings) {
@@ -23,6 +24,18 @@ class Customer {
     }, 0)
 
     this.totalSpent = parseFloat(total.toFixed(2))
+  }
+
+  getAvailableRooms(date, rooms, bookings) {
+    bookings.filter((booking) => {
+      return booking.date === date
+    }).forEach((roomBooked) => {
+      rooms.forEach((room) => {
+        if (roomBooked.roomNumber !== room.number){
+          this.availableRooms.push(room)
+        }
+      })
+    })
   }
 }
 
