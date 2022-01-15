@@ -1,19 +1,45 @@
-const fetchAllData = () => {
-  let fetchCustomers = () => {
+// let fetchCustomers = () => {
+//   return fetch("http://localhost:3001/api/v1/customers")
+//   .then(response => response.json())
+// }
+//
+// let fetchRooms = () => {
+//   return fetch("http://localhost:3001/api/v1/rooms")
+//   .then(response => response.json())
+// }
+//
+// let fetchBookings = () => {
+//   return fetch("http://localhost:3001/api/v1/bookings")
+//   .then(response => response.json())
+// }
+
+const fetchAllData () => {
+
+  const fetchCustomers = () => {
     return fetch("http://localhost:3001/api/v1/customers")
     .then(response => response.json())
-  }
+    }
 
-  let fetchRooms = () => {
+  const fetchRooms = () => {
     return fetch("http://localhost:3001/api/v1/rooms")
     .then(response => response.json())
-  }
+    }
 
-  let fetchBookings = () => {
+  const fetchBookings = () => {
     return fetch("http://localhost:3001/api/v1/bookings")
     .then(response => response.json())
   }
+
+
+
 }
+
+//work on catches still
+
+//think I'll need to return
+
+
+
 
 
 
@@ -64,3 +90,5 @@ const fetchAllData = () => {
 
 
 export {fetchAllData}
+
+// export {fetchCustomers, fetchRooms, fetchBookings}
