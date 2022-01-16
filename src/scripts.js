@@ -1,7 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import Customer from '../src/classes/Customer';
 import {
@@ -10,19 +6,15 @@ import {
   fetchBookings
 } from './apiCalls';
 
-// import {
-//   fetchAllData
-// } from './apiCalls';
 
 import {
   domUpdates,
   selectDateButton,
-  selectedDate
+  selectedDate,
+  roomTypeButton
 } from './domUpdates';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-//import '.images/hood-logo.png'
+import './images/hood-logo.png'
 
 //GLOBAL VARIABLES
 let customersData;
@@ -30,8 +22,6 @@ let roomsData;
 let bookingsData;
 let customerIndex;
 let currentCustomer;
-// let date;
-
 
 //FUNCTIONS
 
@@ -69,9 +59,12 @@ const getRandomIndex = (array) => {
 //EVENT LISTENERS
 selectDateButton.addEventListener('click', function(e) {
   e.preventDefault(),
-  console.log(currentCustomer)
   domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
 });
+
+roomTypeButton.addEventListener('click', function() {
+  domUpdates.displayFilteredRooms()
+})
 
 export {
   currentCustomer,

@@ -15,8 +15,10 @@ const selectDateButton = document.getElementById('selectDateButton');
 
 const selectedDate = document.getElementById('calendarDate');
 
-
 const availableRoomsSection = document.getElementById('roomDisplaySection');
+
+let roomType = document.getElementById('roomTypes')
+let roomTypeButton = document.getElementById('selectTypeButton')
 
 //FUNCTIONS
 
@@ -38,8 +40,8 @@ let domUpdates = {
       <section class='booked-info-card'>
         <p>Booking For ${booking.date}</p>
         <p>Confirmation ID: ${booking.id}</p>
-        <p>Room Type ${foundRoom.roomType}</p>
-        <p>Cost ${foundRoom.costPerNight}</p>
+        <p>Room Type: ${foundRoom.roomType}</p>
+        <p>Cost: $ ${foundRoom.costPerNight}</p>
       </section>
       `
     })
@@ -58,21 +60,40 @@ let domUpdates = {
         <p>${room.roomType}</p>
         <p>has a bidet: ${room.bidet}</p>
         <p>${room.bedSize} size bed</p>
-        <p>number of beds ${room.numBeds}</p>
-        <p>cost per night ${room.costPerNight}</p>
+        <p>number of beds: ${room.numBeds}</p>
+        <p>cost per night: ${room.costPerNight}</p>
       </section>
       `
     })
   },
 
   displayFilteredRooms() {
-    
-  }
+    availableRoomsSection.innerHTML = ''
+    currentCustomer.filterRoomsByType(roomType.value)
+    console.log(currentCustomer.filteredRooms)
 
+    if (currentCustomer.filteredRooms.length > 0) {
+      currentCustomer.filteredRooms.forEach((room) => {
+
+        availableRoomsSection.innerHTML += `
+        <section class='individual-room-cards'>
+        <p>${room.roomType}</p>
+        <p>has a bidet: ${room.bidet}</p>
+        <p>${room.bedSize} size bed</p>
+        <p>number of beds: ${room.numBeds}</p>
+        <p>cost per night: ${room.costPerNight}</p>
+        </section>
+        `
+      })
+    } else {
+      availableRoomsSection.innerText = "we fiercely apologize that we have no rooms matching your search. our company credit card number is 867530955555555, feel free to buy yourself a puppy. or perhaps a yacht. maybe a night at the hotel down the road? our sincerest apologies and happy trails!"
+    }
+  }
 }
 
 export {
  domUpdates,
  selectDateButton,
- selectedDate
+ selectedDate,
+ roomTypeButton
 }

@@ -39,11 +39,7 @@ class Customer {
     })
   }
 
-
-
-
   getAvailableRooms(date, rooms, bookings) {
-
     const bookedRooms = bookings.reduce((acc, booking) => {
       if (booking.date === date) {
         acc.push(booking.roomNumber)
@@ -54,12 +50,7 @@ class Customer {
     this.availableRooms = rooms.filter((room) => {
       return !bookedRooms.includes(room.number)
     })
-
-      console.log('available rooms', this.availableRooms)
-
   }
-
-
 
   filterRoomsByType(roomType) {
     this.filteredRooms = this.availableRooms.filter((room) => {
