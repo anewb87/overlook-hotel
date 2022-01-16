@@ -47,7 +47,7 @@ let domUpdates = {
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
     availableRoomsSection.innerHTML = '';
-    const date = selectedDate.value;
+    const date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
     console.log('customer', currentCustomer)
 
