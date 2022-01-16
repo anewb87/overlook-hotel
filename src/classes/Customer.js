@@ -28,18 +28,6 @@ class Customer {
   }
 
   getAvailableRooms(date, rooms, bookings) {
-    bookings.filter((booking) => {
-      return booking.date === date
-    }).forEach((roomBooked) => {
-      rooms.forEach((room) => {
-        if (roomBooked.roomNumber !== room.number){
-          this.availableRooms.push(room)
-        }
-      })
-    })
-  }
-
-  getAvailableRooms(date, rooms, bookings) {
     const bookedRooms = bookings.reduce((acc, booking) => {
       if (booking.date === date) {
         acc.push(booking.roomNumber)

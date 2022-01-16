@@ -62,7 +62,6 @@ const bookARoom = (e) => {
       date: date,
       roomNumber: parseInt(e.target.parentNode.id)
     }
-    console.log(roomToPost)
     postBooking(roomToPost)
   }
 }
