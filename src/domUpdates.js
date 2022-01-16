@@ -63,7 +63,12 @@ let domUpdates = {
       </section>
       `
     })
+  },
+
+  displayFilteredRooms() {
+    
   }
+
 }
 
 export {
