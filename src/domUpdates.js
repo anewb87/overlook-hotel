@@ -17,10 +17,28 @@ const selectedDate = document.getElementById('calendarDate');
 
 const availableRoomsSection = document.getElementById('roomDisplaySection');
 
-let roomType = document.getElementById('roomTypes')
-let roomTypeButton = document.getElementById('selectTypeButton')
+const roomType = document.getElementById('roomTypes');
+const roomTypeButton = document.getElementById('selectTypeButton');
+
+const greeting = document.querySelector('.greeting');
+
+const toBookDisplay= document.querySelector('.to-book-display')
+
+
 
 //FUNCTIONS
+
+function show(elements) {
+  elements.forEach(element => {
+    element.classList.remove('hidden');
+  });
+}
+
+function hide(elements) {
+  elements.forEach(element => {
+    element.classList.add('hidden');
+  });
+}
 
 
 //DOM UPDATES OBJECT
@@ -48,6 +66,8 @@ let domUpdates = {
   },
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
+    hide([greeting])
+    show([toBookDisplay])
     availableRoomsSection.innerHTML = '';
     const date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
@@ -69,9 +89,8 @@ let domUpdates = {
   },
 
   displayFilteredRooms() {
-    availableRoomsSection.innerHTML = ''
-    currentCustomer.filterRoomsByType(roomType.value)
-    console.log(currentCustomer.filteredRooms)
+    availableRoomsSection.innerHTML = '';
+    currentCustomer.filterRoomsByType(roomType.value);
 
     if (currentCustomer.filteredRooms.length > 0) {
       currentCustomer.filteredRooms.forEach((room) => {

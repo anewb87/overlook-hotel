@@ -9,7 +9,7 @@
   justify-content: center;
   border: 2px solid $dark-green;
   box-shadow: $drop-shadow-green;
-  margin: 75px 0px 0px 75px;
+  margin: 100px 0px 0px 75px;
 }
 
 .bookings-list-container,
@@ -32,11 +32,11 @@
 }
 
 .make-booking-section {
-  @include size (50%, 55%);
+  @include size (60vh, 55%);
   background-color: $opaque-white;
   // justify-content: center;
   border: 2px solid $dark-green;
-  margin: 75px 75px 0px 0px;
+  margin: 100px 75px 0px 0px;
   box-shadow: $drop-shadow-green;
 }
 
@@ -59,19 +59,13 @@
   background-color: transparent;
   border: none;
   text-decoration: underline 0.15em $transparent;
-  transition: text-decoration-color 400ms
+  transition: text-decoration-color 400ms;
 }
 
 .book-button:hover {
   cursor: pointer;
   text-decoration-color: $white;
 }
-
-// from innerHTML
-// .booked-info-card {
-//   background-color: $opaque-white
-// }
-
 
 // @mixin flex-style($direction, $content) {
 //     display: flex;
