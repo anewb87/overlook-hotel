@@ -38,7 +38,8 @@
   box-shadow: $drop-shadow;
 }
 
-.booked-info-card {
+.booked-info-card,
+.individual-room-cards {
   background-color: $dark-green;
   border: 2px solid $dark-green;
   margin-bottom: 5px;
