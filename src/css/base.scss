@@ -1,4 +1,3 @@
-/* This is an example of how to import a partial scss file*/
 @import '_variables';
 @import '_mix-ins.scss';
 @import '_keyframes.scss';
@@ -7,16 +6,20 @@
 @import 'customer-dashboard';
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap');
 
-html, body, main {
+html, body {
   @include size(100%, 100%);
 }
 
 body {
-  font-family: 'Cinzel', serif;
+  font-family: $primary-font;
   background-image: $primary-background;
   background-repeat: no-repeat;
   background-size: cover;
   // overflow-y: hidden;
+}
+
+button {
+  font-family: $primary-font;
 }
 
 // main {
@@ -27,22 +30,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-
-.book-button {
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  text-decoration: underline 0.15em $transparent;
-  transition: text-decoration-color 400ms
-}
-
-.book-button:hover {
-  cursor: pointer;
-  text-decoration-color: $dark-green;
-}
-
 
 
 .hidden {
