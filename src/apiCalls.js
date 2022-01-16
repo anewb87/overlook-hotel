@@ -1,16 +1,16 @@
 let fetchCustomers = () => {
   return fetch("http://localhost:3001/api/v1/customers")
-  .then(response => response.json())
+    .then(response => response.json())
 }
 
 let fetchRooms = () => {
   return fetch("http://localhost:3001/api/v1/rooms")
-  .then(response => response.json())
+    .then(response => response.json())
 }
 
 let fetchBookings = () => {
   return fetch("http://localhost:3001/api/v1/bookings")
-  .then(response => response.json())
+    .then(response => response.json())
 }
 
 let postBooking = (booking) => {
@@ -19,15 +19,15 @@ let postBooking = (booking) => {
     body: JSON.stringify(booking),
     headers: {'Content-Type': 'application/json'}
   })
-  .then(response => errorHandle(response))
-  .then(data => console.log(data))
-  .catch(error => console.log(error))
+    .then(response => errorHandle(response))
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 }
 
-const errorHandle = (response) =>{
+const errorHandle = (response) => {
   if (!response.ok) {
     const errorHandleMessage = document.querySelector('.errorHandle');
-    errorHandleMessage.innerText = 'We would love to have you stay with us. Please try again.'
+    errorHandleMessage.innerText = 'Well shoot, that trail did not lead to our front door. Please try again.'
   } else {
     return response.json()
   }

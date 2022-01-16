@@ -36,7 +36,8 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
     instantiateCustomer(customersData)
     getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
   })
-    //put catch here
+  .catch(error => console.log(error))
+
 
 const instantiateCustomer = (customersData) => {
   customerIndex = getRandomIndex(customersData)

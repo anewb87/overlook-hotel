@@ -22,12 +22,11 @@ const roomTypeButton = document.getElementById('selectTypeButton');
 
 const greeting = document.querySelector('.greeting');
 
-const toBookDisplay= document.querySelector('.to-book-display')
+const toBookDisplay = document.querySelector('.to-book-display')
 
 
 
 //FUNCTIONS
-
 
 const show = (elements) => {
   elements.forEach(element => {
@@ -71,18 +70,23 @@ let domUpdates = {
     availableRoomsSection.innerHTML = '';
     date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
-    currentCustomer.availableRooms.forEach((room) => {
-      availableRoomsSection.innerHTML += `
-      <section class='individual-room-cards' id="${room.number}">
+
+    if (currentCustomer.availableRooms.length > 0) {
+      currentCustomer.availableRooms.forEach((room) => {
+        availableRoomsSection.innerHTML += `
+        <section class='individual-room-cards' id="${room.number}">
         <p>${room.roomType}</p>
         <p>has a bidet: ${room.bidet}</p>
         <p>${room.bedSize} size bed</p>
         <p>number of beds: ${room.numBeds}</p>
         <p>cost per night: ${room.costPerNight}</p>
         <button class="book-button book-button-js">book room</button>
-      </section>
-      `
+        </section>
+        `
     })
+  } else {
+    availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+  }
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons)
   },
@@ -114,10 +118,10 @@ let domUpdates = {
 }
 
 export {
- domUpdates,
- selectDateButton,
- selectedDate,
- roomTypeButton,
- bookButtons,
- date
+  domUpdates,
+  selectDateButton,
+  selectedDate,
+  roomTypeButton,
+  bookButtons,
+  date
 }
