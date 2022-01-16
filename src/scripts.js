@@ -30,7 +30,7 @@ let roomsData;
 let bookingsData;
 let customerIndex;
 let currentCustomer;
-let date;
+// let date;
 
 
 //FUNCTIONS
@@ -40,34 +40,25 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
     [customersData, roomsData, bookingsData] = [data[0].customers, data[1].rooms, data[2].bookings]
   })
   .then(() => {
+    instantiateCustomer(customersData)
     getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
   })
     //put catch here
 
   //I want to fetch all the data and then instantiate the classes
 
-// window.onload = function() {
-//   // getCustomerInfo()
-//   // domUpdates.displayBookedRooms()
-// }
-
-
-
-
-const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
-
+const instantiateCustomer = (customersData) => {
   customerIndex = getRandomIndex(customersData)
   currentCustomer = new Customer(customersData[customerIndex]);
+  return currentCustomer
+}
 
-
+const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
   currentCustomer.getCustomerBookings(bookingsData);
   currentCustomer.getTotalSpent(roomsData);
   domUpdates.populateCustomerInfo(currentCustomer, roomsData)
 }
 
-const getSelectedDate = () => {
-  date = selectedDate.value
-}
 
 const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
@@ -78,5 +69,12 @@ const getRandomIndex = (array) => {
 //EVENT LISTENERS
 selectDateButton.addEventListener('click', function(e) {
   e.preventDefault(),
-  getSelectedDate()
+  console.log(currentCustomer)
+  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
 });
+
+export {
+  currentCustomer,
+  roomsData,
+  bookingsData
+}
