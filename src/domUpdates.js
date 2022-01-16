@@ -2,13 +2,16 @@
 import {
   currentCustomer,
   roomsData,
-  bookingsData
+  bookingsData,
+  createBookButton
 } from './scripts'
 
 
 
 
 //GLOBAL VARIABLES
+let bookButtons = [];
+let date;
 
 //QUERY SELECTORS
 const selectDateButton = document.getElementById('selectDateButton');
@@ -28,17 +31,20 @@ const toBookDisplay= document.querySelector('.to-book-display')
 
 //FUNCTIONS
 
-function show(elements) {
+
+const show = (elements) => {
   elements.forEach(element => {
     element.classList.remove('hidden');
   });
 }
 
-function hide(elements) {
+const hide = (elements) => {
   elements.forEach(element => {
     element.classList.add('hidden');
   });
 }
+
+
 
 
 //DOM UPDATES OBJECT
@@ -69,23 +75,23 @@ let domUpdates = {
     hide([greeting])
     show([toBookDisplay])
     availableRoomsSection.innerHTML = '';
-    const date = selectedDate.value.split('-').join('/');
+    date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
-    console.log('customer', currentCustomer)
-
-    console.log('customer', currentCustomer.availableRooms)
     currentCustomer.availableRooms.forEach((room) => {
       availableRoomsSection.innerHTML += `
-      <section class='individual-room-cards'>
+      <section class='individual-room-cards' id="${room.number}">
         <p>${room.roomType}</p>
         <p>has a bidet: ${room.bidet}</p>
         <p>${room.bedSize} size bed</p>
         <p>number of beds: ${room.numBeds}</p>
         <p>cost per night: ${room.costPerNight}</p>
-        <button class="book-button">book room</button>
+        <button class="book-button book-button-js">book room</button>
       </section>
       `
     })
+    bookButtons = document.querySelectorAll('.book-button-js');
+    createBookButton(bookButtons)
+
   },
 
   displayFilteredRooms() {
@@ -116,5 +122,7 @@ export {
  domUpdates,
  selectDateButton,
  selectedDate,
- roomTypeButton
+ roomTypeButton,
+ bookButtons,
+ date
 }

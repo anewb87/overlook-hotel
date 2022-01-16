@@ -11,7 +11,9 @@ import {
   domUpdates,
   selectDateButton,
   selectedDate,
-  roomTypeButton
+  roomTypeButton,
+  bookButtons,
+  date
 } from './domUpdates';
 
 import './images/hood-logo.png'
@@ -55,6 +57,25 @@ const getRandomIndex = (array) => {
 }
 
 
+const bookARoom = (e) => {
+  if (e.target.classList.contains('book-button-js')) {
+    const roomToPost = {
+      "user.ID": currentCustomer.id,
+      "date": date,
+      "roomNumber": e.target.parentNode.id
+    }
+    console.log(roomToPost)
+    //post that shiiiiz
+  }
+}
+
+const createBookButton = (bookButtons) => {
+  bookButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      bookARoom(e);
+    });
+  });
+}
 
 //EVENT LISTENERS
 selectDateButton.addEventListener('click', function(e) {
@@ -69,5 +90,6 @@ roomTypeButton.addEventListener('click', function() {
 export {
   currentCustomer,
   roomsData,
-  bookingsData
+  bookingsData,
+  createBookButton
 }
