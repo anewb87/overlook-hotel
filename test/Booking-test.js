@@ -52,5 +52,4 @@ describe('Booking', () => {
   it('should have a positive room number for the booking', () => {
     expect(booking.roomNumber).to.be.greaterThan(0);
   });
-
 })

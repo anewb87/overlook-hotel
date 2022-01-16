@@ -4,60 +4,68 @@
 }
 
 .booking-history-section {
-  @include size (50%, 28%);
+  @include size (60vh, 28%);
   background-color: $opaque-white;
   justify-content: center;
-  border: 2px solid $dark-green;;
-  box-shadow: $drop-shadow;
-  margin: 75px 0px 0px 75px;
+  border: 2px solid $dark-green;
+  box-shadow: $drop-shadow-green;
+  margin: 100px 0px 0px 75px;
 }
 
 .bookings-list-container,
 .available-list-container {
+  @include size (41vh, 80%);
   @include flex-style(column, space-between);
   @include left-right-margin(20px, 20px);
-  padding: 20px;
+  padding: 10px;
   // align-items: center;
   background-color: $dark-green;
   color: $white;
-  overflow: auto;
+  overflow-y: auto;
 }
 
-// .individual-bookings {
-//   background-color: $white;
-//
-//   to be make on domUpdates
-// }
+.mini-heading {
+  font-family: $primary-font;
+  font-weight: 600;
+  font-size: 27px;
+  padding: 20px;
+}
 
 .make-booking-section {
-  @include size (50%, 55%);
+  @include size (60vh, 55%);
   background-color: $opaque-white;
   // justify-content: center;
   border: 2px solid $dark-green;
-  margin: 75px 75px 0px 0px;
-  box-shadow: $drop-shadow;
+  margin: 100px 75px 0px 0px;
+  box-shadow: $drop-shadow-green;
 }
 
 .booked-info-card,
 .individual-room-cards {
   background-color: $dark-green;
   border: 2px solid $dark-green;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding: 5px;
   font-size: 18px;
 }
 
-
 .book-a-room-container {
   display: flex;
-
 }
 
-// from innerHTML
-// .booked-info-card {
-//   background-color: $opaque-white
-// }
+.book-button {
+  cursor: pointer;
+  color: $white;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline 0.15em $transparent;
+  transition: text-decoration-color 400ms;
+}
 
+.book-button:hover {
+  cursor: pointer;
+  text-decoration-color: $white;
+}
 
 // @mixin flex-style($direction, $content) {
 //     display: flex;
