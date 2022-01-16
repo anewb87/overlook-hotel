@@ -6,9 +6,6 @@ import {
   createBookButton
 } from './scripts'
 
-
-
-
 //GLOBAL VARIABLES
 let bookButtons = [];
 let date;
@@ -43,9 +40,6 @@ const hide = (elements) => {
     element.classList.add('hidden');
   });
 }
-
-
-
 
 //DOM UPDATES OBJECT
 
@@ -91,7 +85,6 @@ let domUpdates = {
     })
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons)
-
   },
 
   displayFilteredRooms() {
@@ -102,19 +95,21 @@ let domUpdates = {
       currentCustomer.filteredRooms.forEach((room) => {
 
         availableRoomsSection.innerHTML += `
-        <section class='individual-room-cards'>
+        <section class='individual-room-cards' id="${room.number}">
           <p>${room.roomType}</p>
           <p>has a bidet: ${room.bidet}</p>
           <p>${room.bedSize} size bed</p>
           <p>number of beds: ${room.numBeds}</p>
           <p>cost per night: ${room.costPerNight}</p>
-          <button class="book-button">book room</button>
+          <button class="book-button book-button-js">book room</button>
         </section>
         `
       })
     } else {
       availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
     }
+    bookButtons = document.querySelectorAll('.book-button-js');
+    createBookButton(bookButtons)
   }
 }
 

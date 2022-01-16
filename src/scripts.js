@@ -3,7 +3,8 @@ import Customer from '../src/classes/Customer';
 import {
   fetchCustomers,
   fetchRooms,
-  fetchBookings
+  fetchBookings,
+  postBooking
 } from './apiCalls';
 
 
@@ -37,8 +38,6 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
   })
     //put catch here
 
-  //I want to fetch all the data and then instantiate the classes
-
 const instantiateCustomer = (customersData) => {
   customerIndex = getRandomIndex(customersData)
   currentCustomer = new Customer(customersData[customerIndex]);
@@ -51,21 +50,19 @@ const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer
   domUpdates.populateCustomerInfo(currentCustomer, roomsData)
 }
 
-
 const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 }
 
-
 const bookARoom = (e) => {
   if (e.target.classList.contains('book-button-js')) {
     const roomToPost = {
-      "user.ID": currentCustomer.id,
-      "date": date,
-      "roomNumber": e.target.parentNode.id
+      userID: currentCustomer.id,
+      date: date,
+      roomNumber: parseInt(e.target.parentNode.id)
     }
     console.log(roomToPost)
-    //post that shiiiiz
+    postBooking(roomToPost)
   }
 }
 
