@@ -26,6 +26,7 @@ const largeLogo = document.querySelector('.large-logo-js');
 
 
 //FUNCTIONS
+
 const show = (elements) => {
   elements.forEach(element => {
     element.classList.remove('hidden');
@@ -68,29 +69,39 @@ let domUpdates = {
   },
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
-    greeting.innerText = "Available Rooms"
     hide([largeLogo]);
     show([toBookDisplay]);
+    greeting.innerText = "Available Rooms"
     availableRoomsSection.innerHTML = '';
-    date = selectedDate.value.split('-').join('/');
-    currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
 
-    if (currentCustomer.availableRooms.length > 0) {
-      currentCustomer.availableRooms.forEach((room) => {
-        availableRoomsSection.innerHTML += `
-        <section class='individual-room-cards' id="${room.number}">
-        <p>${room.roomType}</p>
-        <p>has a bidet: ${room.bidet}</p>
-        <p>${room.bedSize} size bed</p>
-        <p>number of beds: ${room.numBeds}</p>
-        <p>cost per night: ${room.costPerNight}</p>
-        <button class="book-button book-button-js">book room</button>
-        </section>
-        `
-    });
-  } else {
-    greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
-  }
+    const formattedDate = new Date(selectedDate.value)
+    const today = new Date()
+
+    if (formattedDate > today) {
+      date = selectedDate.value.split('-').join('/');
+      currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
+
+      if (currentCustomer.availableRooms.length > 0) {
+        currentCustomer.availableRooms.forEach((room) => {
+          availableRoomsSection.innerHTML += `
+          <section class='individual-room-cards' id="${room.number}">
+          <p>${room.roomType}</p>
+          <p>has a bidet: ${room.bidet}</p>
+          <p>${room.bedSize} size bed</p>
+          <p>number of beds: ${room.numBeds}</p>
+          <p>cost per night: ${room.costPerNight}</p>
+          <button class="book-button book-button-js">book room</button>
+          </section>
+          `
+        });
+      } else {
+        greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+      }
+
+    } else {
+      greeting.innerText = "As much as we'd love to Marty McFly this situation, grab that DeLorean and point to toward today or a future date."
+    }
+
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons);
   },

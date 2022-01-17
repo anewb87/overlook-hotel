@@ -28,6 +28,7 @@ class Customer {
   }
 
   getAvailableRooms(date, rooms, bookings) {
+
     const bookedRooms = bookings.reduce((acc, booking) => {
       if (booking.date === date) {
         acc.push(booking.roomNumber)
