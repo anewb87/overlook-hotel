@@ -7,12 +7,6 @@ header {
   //justify-content: space-around;
 }
 
-// .logo {
-//   @include size (3px, 3px);
-// tried making really small to see if perhaps that was the issue but it's not
-// }
-
-
 // .tracking-in-expand {
 // 	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 // 	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
@@ -35,4 +29,5 @@ h2 {
 
 .logo {
   padding-left: 30px;
+  width: 75px;
 }

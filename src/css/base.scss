@@ -15,34 +15,27 @@ body {
   background-image: $primary-background;
   background-repeat: no-repeat;
   background-size: cover;
-  // overflow-y: hidden;
 }
 
-button {
+button,
+.select-date-button {
   font-family: $primary-font;
+  padding: 5px;
 }
 
-// main {
-//   @include size(90%, 100%)
-// }
+button:hover,
+.select-date-button:hover {
+  cursor: pointer;
+  color: $white;
+  background-color: $dark-green;
+}
 
 .flex-column {
-  display: flex;
-  flex-direction: column;
+  @include flex-style(column, center)
+  // display: flex;
+  // flex-direction: column;
 }
-
 
 .hidden {
   display: none;
 }
-  /* Scale from center- can't get this to work yet so have above that's ok for now*/
-// .book-button:after {
-//   opacity 1;
-//   transform: scale(0);
-//   transform-origin: center;
-// }
-//
-// .book-button:hover::after,
-// .book-button:focus::after{
-//   transform: scale(1);
-// }
