@@ -28,9 +28,11 @@ const username = document.getElementById('username');
 const password = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
 
-const loginDisplay = document.querySelector('.login-display-js')
+const loginDisplay = document.querySelector('.login-display-js');
 const dashboard = document.querySelector('.customer-display-js');
-const header = document.querySelector('.header-js')
+const header = document.querySelector('.header-js');
+
+const totalSpent = document.querySelector('.total-js');
 
 
 //FUNCTIONS
@@ -49,14 +51,17 @@ const hide = (elements) => {
 //DOM UPDATES OBJECT
 let domUpdates = {
 
-  displayDashboard(currentCustomer) {
+  updateTotalSpent() {
+    totalSpent.innerText = `My Total: $${currentCustomer.totalSpent}`
+  },
+
+  displayDashboard() {
     hide([loginDisplay]);
     show([header, dashboard]);
     document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
-    document.querySelector('.total-js').innerText = `My Total: $${currentCustomer.totalSpent}`
   },
 
-  populateCustomerBookings(currentCustomer, roomsData) {
+  populateCustomerBookings(roomsData) {
 
     let sortedBookings = currentCustomer.bookings.sort((a,b) => {
       return new Date(a.date) - new Date(b.date)
@@ -76,7 +81,7 @@ let domUpdates = {
     })
   },
 
-  displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
+  displayAvailableRooms(roomsData, bookingsData) {
     hide([largeLogo]);
     show([toBookDisplay]);
     greeting.innerText = "Available Rooms"
@@ -114,11 +119,11 @@ let domUpdates = {
     createBookButton(bookButtons);
   },
 
-  displayFilteredRooms(currentCustomer) {
+  displayFilteredRooms() {
     hide([largeLogo]);
     availableRoomsSection.innerHTML = '';
     greeting.innerText = 'Available Rooms';
-    console.log(currentCustomer)
+
     currentCustomer.filterRoomsByType(roomType.value);
 
     if (currentCustomer.filteredRooms.length > 0) {

@@ -52,20 +52,18 @@ const validateCustomerLogin = () => {
       [customersData, roomsData, bookingsData] = [data[0], data[1].rooms, data[2].bookings]
 
       currentCustomer = new Customer(customersData);
-      console.log('inside 1st then', currentCustomer);
-    })
-    .then(() => {
-      displayCustomerInfo(currentCustomer, bookingsData, roomsData);
-      domUpdates.displayDashboard(currentCustomer);
-      console.log('inside 2nd then', currentCustomer);
+      displayCustomerInfo(bookingsData, roomsData);
+      domUpdates.displayDashboard();
+      domUpdates.updateTotalSpent();
     })
   }
 }
 
-const displayCustomerInfo = (currentCustomer, bookingsData, roomsData) => {
+const displayCustomerInfo = (bookingsData, roomsData) => {
   currentCustomer.getCustomerBookings(bookingsData);
   currentCustomer.getTotalSpent(roomsData);
-  domUpdates.populateCustomerBookings(currentCustomer, roomsData);
+  domUpdates.populateCustomerBookings(roomsData);
+  domUpdates.updateTotalSpent();
 }
 
 
@@ -83,10 +81,10 @@ const bookARoom = (e) => {
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
-        displayCustomerInfo(currentCustomer, bookingsData, roomsData);
+        displayCustomerInfo(bookingsData, roomsData);
         // getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
         setTimeout(() => {
-          domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+          domUpdates.displayAvailableRooms(roomsData, bookingsData)
         }, 1500)
       })
     })
@@ -109,7 +107,7 @@ loginButton.addEventListener('click', function(e) {
 })
 
 selectDateButton.addEventListener('click', function() {
-  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData);
+  domUpdates.displayAvailableRooms(roomsData, bookingsData);
   show([roomTypeContainer]);
 });
 
