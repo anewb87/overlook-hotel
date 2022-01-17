@@ -32,8 +32,6 @@ button:hover,
 
 .flex-column {
   @include flex-style(column, center)
-  // display: flex;
-  // flex-direction: column;
 }
 
 .hidden {
