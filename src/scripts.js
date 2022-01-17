@@ -1,3 +1,4 @@
+//IMPORTS
 import './css/base.scss';
 import Customer from '../src/classes/Customer';
 import {
@@ -7,7 +8,6 @@ import {
   postBooking
 } from './apiCalls';
 
-
 import {
   domUpdates,
   selectDateButton,
@@ -15,12 +15,15 @@ import {
   roomTypeButton,
   bookButtons,
   roomTypeContainer,
+  // individualRoom,
   date,
   hide,
   show
 } from './domUpdates';
 
-import './images/hood-logo.png'
+import './images/large-logo.png';
+import './images/natural-beauty.png';
+
 
 //GLOBAL VARIABLES
 let customersData;
@@ -29,8 +32,8 @@ let bookingsData;
 let customerIndex;
 let currentCustomer;
 
-//FUNCTIONS
 
+//FUNCTIONS
 Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
   .then(data => {
     [customersData, roomsData, bookingsData] = [data[0].customers, data[1].rooms, data[2].bookings]
@@ -67,7 +70,8 @@ const bookARoom = (e) => {
       roomNumber: parseInt(e.target.parentNode.id)
     }
 
-    domUpdates.displayBookedMessage()
+    domUpdates.displayBookedMessage();
+    // individualRoom.classList.add('white-shadow-transform');
 
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
@@ -89,9 +93,9 @@ const createBookButton = (bookButtons) => {
   });
 }
 
+
 //EVENT LISTENERS
-selectDateButton.addEventListener('click', function(e) {
-  e.preventDefault();
+selectDateButton.addEventListener('click', function() {
   domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData);
   show([roomTypeContainer]);
 });

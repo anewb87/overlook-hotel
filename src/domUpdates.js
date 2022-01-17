@@ -6,35 +6,28 @@ import {
   createBookButton
 } from './scripts'
 
+
 //GLOBAL VARIABLES
 let bookButtons = [];
 let date;
 
+
 //QUERY SELECTORS
 const selectDateButton = document.getElementById('selectDateButton');
-
 const selectedDate = document.getElementById('calendarDate');
-
 const availableRoomsSection = document.getElementById('roomDisplaySection');
-
 const roomType = document.getElementById('roomTypes');
 const roomTypeButton = document.getElementById('selectTypeButton');
-
 const greeting = document.querySelector('.greeting');
-
-const toBookDisplay = document.querySelector('.to-book-display')
-
-const roomTypeContainer = document.querySelector('.room-type-container-js')
-
+const toBookDisplay = document.querySelector('.to-book-display');
+const roomTypeContainer = document.querySelector('.room-type-container-js');
+const largeLogo = document.querySelector('.large-logo-js');
+// const individualRooms = document.querySelector('.individual-room-cards-js');
 
 
 //FUNCTIONS
-
-
-
 const show = (elements) => {
   elements.forEach(element => {
-    console.log(element)
     element.classList.remove('hidden');
   });
 }
@@ -45,8 +38,8 @@ const hide = (elements) => {
   });
 }
 
-//DOM UPDATES OBJECT
 
+//DOM UPDATES OBJECT
 let domUpdates = {
 
   welcomeUser() {
@@ -72,7 +65,8 @@ let domUpdates = {
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
     greeting.innerText = "Available Rooms"
-    show([toBookDisplay])
+    hide([largeLogo]);
+    show([toBookDisplay]);
     availableRoomsSection.innerHTML = '';
     date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
@@ -89,15 +83,16 @@ let domUpdates = {
         <button class="book-button book-button-js">book room</button>
         </section>
         `
-    })
+    });
   } else {
     greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
   }
     bookButtons = document.querySelectorAll('.book-button-js');
-    createBookButton(bookButtons)
+    createBookButton(bookButtons);
   },
 
   displayFilteredRooms() {
+    hide([largeLogo]);
     availableRoomsSection.innerHTML = '';
     currentCustomer.filterRoomsByType(roomType.value);
 
@@ -105,7 +100,7 @@ let domUpdates = {
       currentCustomer.filteredRooms.forEach((room) => {
 
         availableRoomsSection.innerHTML += `
-        <section class='individual-room-cards' id="${room.number}">
+        <section class='individual-room-cards individual-room-cards-js' id="${room.number}">
           <p>${room.roomType}</p>
           <p>has a bidet: ${room.bidet}</p>
           <p>${room.bedSize} size bed</p>
@@ -135,6 +130,7 @@ export {
   roomTypeButton,
   bookButtons,
   roomTypeContainer,
+  // individualRoom,
   date,
   hide,
   show,
