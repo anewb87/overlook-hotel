@@ -3,6 +3,11 @@ let fetchCustomers = () => {
     .then(response => response.json())
 }
 
+let fetchSingleCustomer = (userID) => {
+  return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
+    .then(response => response.json())
+}
+
 let fetchRooms = () => {
   return fetch("http://localhost:3001/api/v1/rooms")
     .then(response => response.json())
@@ -32,4 +37,4 @@ const errorHandle = (response) => {
   }
 }
 
-export {fetchCustomers, fetchRooms, fetchBookings, postBooking}
+export {fetchCustomers, fetchSingleCustomer, fetchRooms, fetchBookings, postBooking}

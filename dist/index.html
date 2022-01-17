@@ -7,17 +7,24 @@
     <title>Webpack Starter Kit</title>
   </head>
   <body>
-    <header>
+    <header class="header-js hidden">
       <img class="logo" src="images/large-logo.png" alt="hood overlook hotel logo"/>
       <h1 class="tracking-in-expand">HOOD OVERLOOK HOTEL</h1>
       <h2 class="user-name-js"></h2>
     </header>
     <main>
 
-      <section class="login-display-js login-display hidden">
+      <section class="login-display-js login-display">
+        <form>
+        <label for="username">username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">password:</label><br>
+        <input type="text" id="password" name="password" required><br><br>
+        <input type="submit" id="loginButton" value="Login">
+      </form>
       </section>
 
-      <section class="customer-display-js customer-display">
+      <section class="customer-display-js customer-display hidden">
         <aside class="booking-history-section styalized-box">
           <h2 class= "mini-heading">my bookings</h2>
           <section class="bookings-list-container bookings-list-container-js" tabindex="0"></section>
