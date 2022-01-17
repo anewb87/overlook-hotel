@@ -123,9 +123,9 @@ let domUpdates = {
     createBookButton(bookButtons)
   },
 
-  displayBookedMessage() {
-
-  }
+  // displayBookedMessage() {
+  //
+  // }
 }
 
 export {
