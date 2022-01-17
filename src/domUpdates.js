@@ -71,7 +71,7 @@ let domUpdates = {
   },
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
-    hide([greeting])
+    greeting.innerText = "Available Rooms"
     show([toBookDisplay])
     availableRoomsSection.innerHTML = '';
     date = selectedDate.value.split('-').join('/');
@@ -91,7 +91,7 @@ let domUpdates = {
         `
     })
   } else {
-    availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+    greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
   }
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons)
@@ -116,16 +116,16 @@ let domUpdates = {
         `
       })
     } else {
-
-      availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+      greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
     }
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons)
   },
 
-  // displayBookedMessage() {
-  //
-  // }
+  displayBookedMessage() {
+    greeting.innerHTML = "THANKS FOR BOOKING WITH US!"
+    availableRoomsSection.innerHTML += ''
+  }
 }
 
 export {

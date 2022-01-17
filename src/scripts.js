@@ -66,12 +66,16 @@ const bookARoom = (e) => {
       date: date,
       roomNumber: parseInt(e.target.parentNode.id)
     }
+
+    domUpdates.displayBookedMessage()
+
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
         getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
-        domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
-        
+        setTimeout(() => {
+          domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+        }, 1500)
       })
     })
   }
