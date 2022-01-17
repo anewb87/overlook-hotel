@@ -32,11 +32,12 @@
               <div>
                 <form>
                   <label for="calendarDate">select a date:</label><br/>
-                  <input type="date" id="calendarDate" name="checkin" min="2022-01-18" max="2022-06-01">
+                  <input type="date" id="calendarDate"
+                   name="checkin" min="2022-01-18" max="2022-06-01" value="2022-01-18">
                   <input type="submit" id="selectDateButton" value="search">
                 </form>
               </div>
-              <div>
+              <div class="room-type-container-js hidden">
                 <p>select room type</p><br />
                 <select name="room-types" id="roomTypes">
                   <label for="room-types">filter by room type</label>
@@ -50,13 +51,13 @@
               </div>
             </div>
             <div class="available-list-container" tabindex="0">
-              <div class="greeting">
+              <div>
                 <p>
                   Add a greeting message here.
                 </p>
               </div>
               <div class="to-book-display hidden">
-                <p>available rooms</p>
+                <p class="message-js">available rooms</p>
                 <section  id="roomDisplaySection"></section>
               </div>
             </div>

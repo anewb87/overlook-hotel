@@ -14,7 +14,10 @@ import {
   selectedDate,
   roomTypeButton,
   bookButtons,
-  date
+  roomTypeContainer,
+  date,
+  hide,
+  show
 } from './domUpdates';
 
 import './images/hood-logo.png'
@@ -48,7 +51,8 @@ const instantiateCustomer = (customersData) => {
 const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
   currentCustomer.getCustomerBookings(bookingsData);
   currentCustomer.getTotalSpent(roomsData);
-  domUpdates.populateCustomerInfo(currentCustomer, roomsData)
+  domUpdates.populateCustomerBookings(currentCustomer, roomsData);
+  domUpdates.welcomeUser();
 }
 
 const getRandomIndex = (array) => {
@@ -62,7 +66,14 @@ const bookARoom = (e) => {
       date: date,
       roomNumber: parseInt(e.target.parentNode.id)
     }
-    postBooking(roomToPost)
+    postBooking(roomToPost).then(data => {
+      fetchBookings().then(data => {
+        bookingsData = data.bookings
+        getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
+        domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+        
+      })
+    })
   }
 }
 
@@ -76,8 +87,9 @@ const createBookButton = (bookButtons) => {
 
 //EVENT LISTENERS
 selectDateButton.addEventListener('click', function(e) {
-  e.preventDefault(),
-  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+  e.preventDefault();
+  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData);
+  show([roomTypeContainer]);
 });
 
 roomTypeButton.addEventListener('click', function() {

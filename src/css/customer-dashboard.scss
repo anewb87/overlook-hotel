@@ -4,7 +4,7 @@
 }
 
 .booking-history-section {
-  @include size (60vh, 28%);
+  @include size (66vh, 28%);
   background-color: $opaque-white;
   justify-content: center;
   border: 2px solid $dark-green;
@@ -13,7 +13,7 @@
 }
 
 .make-booking-section {
-  @include size (60vh, 55%);
+  @include size (66vh, 55%);
   background-color: $opaque-white;
   // justify-content: center;
   border: 2px solid $dark-green;
@@ -23,7 +23,7 @@
 
 .bookings-list-container,
 .available-list-container {
-  @include size (41vh, 80%);
+  @include size (46vh, 80%);
   @include flex-style(column, space-between);
   @include left-right-margin(20px, 20px);
   @include left-right-padding(20px, 20px);

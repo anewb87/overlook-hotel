@@ -24,12 +24,17 @@ const greeting = document.querySelector('.greeting');
 
 const toBookDisplay = document.querySelector('.to-book-display')
 
+const roomTypeContainer = document.querySelector('.room-type-container-js')
+
 
 
 //FUNCTIONS
 
+
+
 const show = (elements) => {
   elements.forEach(element => {
+    console.log(element)
     element.classList.remove('hidden');
   });
 }
@@ -44,11 +49,12 @@ const hide = (elements) => {
 
 let domUpdates = {
 
-  populateCustomerInfo(currentCustomer, roomsData) {
+  welcomeUser() {
     document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
-
     document.querySelector('.total-js').innerText = `My Total: $${currentCustomer.totalSpent}`
+  },
 
+  populateCustomerBookings(currentCustomer, roomsData) {
     currentCustomer.bookings.forEach((booking) => {
       const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
@@ -110,10 +116,15 @@ let domUpdates = {
         `
       })
     } else {
+
       availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
     }
     bookButtons = document.querySelectorAll('.book-button-js');
     createBookButton(bookButtons)
+  },
+
+  displayBookedMessage() {
+
   }
 }
 
@@ -123,5 +134,8 @@ export {
   selectedDate,
   roomTypeButton,
   bookButtons,
-  date
+  roomTypeContainer,
+  date,
+  hide,
+  show,
 }

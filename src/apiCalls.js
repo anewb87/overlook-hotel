@@ -20,7 +20,6 @@ let postBooking = (booking) => {
     headers: {'Content-Type': 'application/json'}
   })
     .then(response => errorHandle(response))
-    .then(data => console.log(data))
     .catch(error => console.log(error))
 }
 
