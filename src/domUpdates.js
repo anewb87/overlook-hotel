@@ -48,7 +48,11 @@ let domUpdates = {
   },
 
   populateCustomerBookings(currentCustomer, roomsData) {
-    currentCustomer.bookings.forEach((booking) => {
+
+    let sortedBookings = currentCustomer.bookings.sort((a,b) => {
+      return new Date(a.date) - new Date(b.date)
+    })
+    sortedBookings.forEach((booking) => {
       const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
       })
