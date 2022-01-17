@@ -94,6 +94,7 @@ let domUpdates = {
   displayFilteredRooms() {
     hide([largeLogo]);
     availableRoomsSection.innerHTML = '';
+    greeting.innerText = 'Available Rooms';
     currentCustomer.filterRoomsByType(roomType.value);
 
     if (currentCustomer.filteredRooms.length > 0) {
