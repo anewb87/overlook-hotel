@@ -4,7 +4,7 @@
 }
 
 .booking-history-section {
-  @include size (60vh, 28%);
+  @include size (66vh, 28%);
   background-color: $opaque-white;
   justify-content: center;
   border: 2px solid $dark-green;
@@ -12,16 +12,30 @@
   margin: 100px 0px 0px 75px;
 }
 
+.make-booking-section {
+  @include size (66vh, 55%);
+  background-color: $opaque-white;
+  // justify-content: center;
+  border: 2px solid $dark-green;
+  margin: 100px 75px 0px 0px;
+  box-shadow: $drop-shadow-green;
+}
+
 .bookings-list-container,
 .available-list-container {
-  @include size (41vh, 80%);
+  @include size (46vh, 80%);
   @include flex-style(column, space-between);
   @include left-right-margin(20px, 20px);
-  padding: 10px;
+  @include left-right-padding(20px, 20px);
+  padding-top: 20px;
   // align-items: center;
   background-color: $dark-green;
   color: $white;
   overflow-y: auto;
+}
+
+.available-list-container {
+  margin-right: 65px;
 }
 
 .mini-heading {
@@ -29,15 +43,6 @@
   font-weight: 600;
   font-size: 27px;
   padding: 20px;
-}
-
-.make-booking-section {
-  @include size (60vh, 55%);
-  background-color: $opaque-white;
-  // justify-content: center;
-  border: 2px solid $dark-green;
-  margin: 100px 75px 0px 0px;
-  box-shadow: $drop-shadow-green;
 }
 
 .booked-info-card,
@@ -51,6 +56,10 @@
 
 .book-a-room-container {
   display: flex;
+}
+
+.center {
+  text-align: center;
 }
 
 .book-button {

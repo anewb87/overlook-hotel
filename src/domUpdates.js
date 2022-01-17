@@ -2,13 +2,13 @@
 import {
   currentCustomer,
   roomsData,
-  bookingsData
+  bookingsData,
+  createBookButton
 } from './scripts'
 
-
-
-
 //GLOBAL VARIABLES
+let bookButtons = [];
+let date;
 
 //QUERY SELECTORS
 const selectDateButton = document.getElementById('selectDateButton');
@@ -22,34 +22,39 @@ const roomTypeButton = document.getElementById('selectTypeButton');
 
 const greeting = document.querySelector('.greeting');
 
-const toBookDisplay= document.querySelector('.to-book-display')
+const toBookDisplay = document.querySelector('.to-book-display')
+
+const roomTypeContainer = document.querySelector('.room-type-container-js')
 
 
 
 //FUNCTIONS
 
-function show(elements) {
+
+
+const show = (elements) => {
   elements.forEach(element => {
+    console.log(element)
     element.classList.remove('hidden');
   });
 }
 
-function hide(elements) {
+const hide = (elements) => {
   elements.forEach(element => {
     element.classList.add('hidden');
   });
 }
 
-
 //DOM UPDATES OBJECT
 
 let domUpdates = {
 
-  populateCustomerInfo(currentCustomer, roomsData) {
+  welcomeUser() {
     document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
-
     document.querySelector('.total-js').innerText = `My Total: $${currentCustomer.totalSpent}`
+  },
 
+  populateCustomerBookings(currentCustomer, roomsData) {
     currentCustomer.bookings.forEach((booking) => {
       const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
@@ -66,26 +71,30 @@ let domUpdates = {
   },
 
   displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
-    hide([greeting])
+    greeting.innerText = "Available Rooms"
     show([toBookDisplay])
     availableRoomsSection.innerHTML = '';
-    const date = selectedDate.value.split('-').join('/');
+    date = selectedDate.value.split('-').join('/');
     currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
-    console.log('customer', currentCustomer)
 
-    console.log('customer', currentCustomer.availableRooms)
-    currentCustomer.availableRooms.forEach((room) => {
-      availableRoomsSection.innerHTML += `
-      <section class='individual-room-cards'>
+    if (currentCustomer.availableRooms.length > 0) {
+      currentCustomer.availableRooms.forEach((room) => {
+        availableRoomsSection.innerHTML += `
+        <section class='individual-room-cards' id="${room.number}">
         <p>${room.roomType}</p>
         <p>has a bidet: ${room.bidet}</p>
         <p>${room.bedSize} size bed</p>
         <p>number of beds: ${room.numBeds}</p>
         <p>cost per night: ${room.costPerNight}</p>
-        <button class="book-button">book room</button>
-      </section>
-      `
+        <button class="book-button book-button-js">book room</button>
+        </section>
+        `
     })
+  } else {
+    greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+  }
+    bookButtons = document.querySelectorAll('.book-button-js');
+    createBookButton(bookButtons)
   },
 
   displayFilteredRooms() {
@@ -96,25 +105,37 @@ let domUpdates = {
       currentCustomer.filteredRooms.forEach((room) => {
 
         availableRoomsSection.innerHTML += `
-        <section class='individual-room-cards'>
+        <section class='individual-room-cards' id="${room.number}">
           <p>${room.roomType}</p>
           <p>has a bidet: ${room.bidet}</p>
           <p>${room.bedSize} size bed</p>
           <p>number of beds: ${room.numBeds}</p>
           <p>cost per night: ${room.costPerNight}</p>
-          <button class="book-button">book room</button>
+          <button class="book-button book-button-js">book room</button>
         </section>
         `
       })
     } else {
-      availableRoomsSection.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
+      greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
     }
+    bookButtons = document.querySelectorAll('.book-button-js');
+    createBookButton(bookButtons)
+  },
+
+  displayBookedMessage() {
+    greeting.innerHTML = "THANKS FOR BOOKING WITH US!"
+    availableRoomsSection.innerHTML += ''
   }
 }
 
 export {
- domUpdates,
- selectDateButton,
- selectedDate,
- roomTypeButton
+  domUpdates,
+  selectDateButton,
+  selectedDate,
+  roomTypeButton,
+  bookButtons,
+  roomTypeContainer,
+  date,
+  hide,
+  show,
 }

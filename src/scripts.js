@@ -3,7 +3,8 @@ import Customer from '../src/classes/Customer';
 import {
   fetchCustomers,
   fetchRooms,
-  fetchBookings
+  fetchBookings,
+  postBooking
 } from './apiCalls';
 
 
@@ -11,7 +12,12 @@ import {
   domUpdates,
   selectDateButton,
   selectedDate,
-  roomTypeButton
+  roomTypeButton,
+  bookButtons,
+  roomTypeContainer,
+  date,
+  hide,
+  show
 } from './domUpdates';
 
 import './images/hood-logo.png'
@@ -33,9 +39,8 @@ Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
     instantiateCustomer(customersData)
     getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
   })
-    //put catch here
+  .catch(error => console.log(error))
 
-  //I want to fetch all the data and then instantiate the classes
 
 const instantiateCustomer = (customersData) => {
   customerIndex = getRandomIndex(customersData)
@@ -46,20 +51,49 @@ const instantiateCustomer = (customersData) => {
 const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
   currentCustomer.getCustomerBookings(bookingsData);
   currentCustomer.getTotalSpent(roomsData);
-  domUpdates.populateCustomerInfo(currentCustomer, roomsData)
+  domUpdates.populateCustomerBookings(currentCustomer, roomsData);
+  domUpdates.welcomeUser();
 }
-
 
 const getRandomIndex = (array) => {
   return Math.floor(Math.random() * array.length);
 }
 
+const bookARoom = (e) => {
+  if (e.target.classList.contains('book-button-js')) {
+    const roomToPost = {
+      userID: currentCustomer.id,
+      date: date,
+      roomNumber: parseInt(e.target.parentNode.id)
+    }
 
+    domUpdates.displayBookedMessage()
+
+    postBooking(roomToPost).then(data => {
+      fetchBookings().then(data => {
+        bookingsData = data.bookings
+        getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
+        setTimeout(() => {
+          domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+        }, 1500)
+      })
+    })
+  }
+}
+
+const createBookButton = (bookButtons) => {
+  bookButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      bookARoom(e);
+    });
+  });
+}
 
 //EVENT LISTENERS
 selectDateButton.addEventListener('click', function(e) {
-  e.preventDefault(),
-  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+  e.preventDefault();
+  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData);
+  show([roomTypeContainer]);
 });
 
 roomTypeButton.addEventListener('click', function() {
@@ -69,5 +103,6 @@ roomTypeButton.addEventListener('click', function() {
 export {
   currentCustomer,
   roomsData,
-  bookingsData
+  bookingsData,
+  createBookButton
 }

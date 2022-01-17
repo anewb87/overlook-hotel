@@ -28,20 +28,16 @@
         <section class="make-booking-section">
           <p class="mini-heading">book a room</p>
           <div class="book-a-room-container">
-            <div>
+            <div class="center">
               <div>
                 <form>
                   <label for="calendarDate">select a date:</label><br/>
-                  <input type="date" id="calendarDate" name="checkin" min="2022-01-18" max="2022-06-01">
+                  <input type="date" id="calendarDate"
+                   name="checkin" min="2022-01-18" max="2022-06-01" value="2022-01-18">
                   <input type="submit" id="selectDateButton" value="search">
                 </form>
               </div>
-              <div>
-                <!-- <p>room type</p>
-                <button>single room</button>
-                <button>junior suite</button>
-                <button>suite</button>
-                <button>residential suite</button> -->
+              <div class="room-type-container-js hidden">
                 <p>select room type</p><br />
                 <select name="room-types" id="roomTypes">
                   <label for="room-types">filter by room type</label>
@@ -51,25 +47,19 @@
                   <option value="residential suite">residential suite</option>
                 </select><br />
                 <button id="selectTypeButton">select</button>
+                <p class="errorHandle"></p>
               </div>
             </div>
             <div class="available-list-container" tabindex="0">
-              <div class="greeting">
-                <p>
+              <div>
+                <p class="greeting">
                   Add a greeting message here.
                 </p>
               </div>
               <div class="to-book-display hidden">
-                <p>available rooms</p>
                 <section  id="roomDisplaySection"></section>
               </div>
             </div>
-            <!-- <div class="available-list-container greeting">
-              <p>
-                How's it hanging?
-              </p>
-
-            </div> -->
           </div>
         </section>
       </section>
@@ -77,9 +67,7 @@
       <section class="manager-dashboard-display-js manager-dashboard-display hidden">
       </section>
 
-
     </main>
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
 </html>
