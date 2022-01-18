@@ -10,7 +10,7 @@
     <header class="header-js hidden">
       <img class="logo" src="images/large-logo.png" alt="hood overlook hotel logo"/>
       <h1 class="tracking-in-expand">HOOD OVERLOOK HOTEL</h1>
-      <h2 class="user-name-js"></h2>
+      <h2 class="user-name-js">welcome</h2>
     </header>
     <main>
       <section class="login-display-js login-display">
@@ -18,11 +18,11 @@
           <h1 class="tracking-in-expand login-title">Hood<br /> Overlook<br /> Hotel</h1>
         </div>
         <div>
-          <form class="center scale-in-center">
+          <form class="scale-in-center">
           <label class="input-label" for="username">username</label><br>
-          <input class="username-input" type="text" id="username" name="username" required><br>
+          <input class="username-input username-input-js" type="text" id="username" name="username" required><br>
           <label class="input-label" for="password">password</label><br>
-          <input class="password-input" type="text" id="password" name="password" required><br><br>
+          <input class="password-input password-input-js" type="text" id="password" name="password" required><br><br>
           <input class="login-button" type="submit" id="loginButton" value="LOGIN">
           </form>
           <p class="error-handle-js error-handle"></p>
@@ -32,7 +32,7 @@
         <aside class="booking-history-section styalized-box">
           <h2 class= "mini-heading">my bookings</h2>
           <section class="bookings-list-container bookings-list-container-js" tabindex="0"></section>
-          <h2 class="total-js mini-heading"></h2>
+          <h2 class="total-js mini-heading">my total</h2>
         </aside>
         <section class="make-booking-section styalized-box">
           <h2 class="mini-heading">book a room</h2>
@@ -40,13 +40,13 @@
             <div class="center">
               <div>
                 <label class="selection-heading"for="calendarDate" >select a date</label><br/>
-                <input type="date" id="calendarDate"
+                <input class="calendar-input" type="date" id="calendarDate"
                  name="checkin" min="2022-01-19" max="2022-06-01" value="2022-01-19">
                 <input type="submit" id="selectDateButton" class="select-date-button" value="search">
               </div>
               <div class="room-type-container room-type-container-js hidden">
                 <p class="selection-heading">select room type</p>
-                <select name="room-types" id="roomTypes">
+                <select name="room-types" class="dropdown dropdown-js" id="roomTypes">
                   <label for="room-types">filter by room type</label>
                   <option value="junior suite">junior suite</option>
                   <option value="single room">single room</option>
@@ -68,10 +68,6 @@
           </div>
         </section>
       </section>
-
-      <section class="manager-dashboard-display-js manager-dashboard-display hidden">
-      </section>
-
     </main>
     <script src="bundle.js"></script>
   </body>
