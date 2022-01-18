@@ -99,7 +99,7 @@ let domUpdates = {
       if (currentCustomer.availableRooms.length > 0) {
         currentCustomer.availableRooms.forEach((room) => {
           availableRoomsSection.innerHTML += `
-          <section class='individual-room-cards' id="${room.number}">
+          <section class="individual-room-cards" tabindex="0" id="${room.number}">
           <p>${room.roomType}</p>
           <p>has a bidet: ${room.bidet}</p>
           <p>${room.bedSize} size bed</p>
@@ -150,10 +150,9 @@ let domUpdates = {
   },
 
   displayBookedMessage() {
+    greeting.innerHTML = "Thanks for booking with us!"
+    availableRoomsSection.innerHTML = `<img class="large-logo large-logo-js" src="images/natural-beauty.png" alt="large hood overlook hotel logo"/>`
 
-
-    greeting.innerHTML = "THANKS FOR BOOKING WITH US!"
-    availableRoomsSection.innerHTML += ''
   },
 
   showLoginErrorMessage() {
