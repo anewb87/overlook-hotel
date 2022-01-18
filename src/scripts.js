@@ -51,6 +51,8 @@ const validateCustomerLogin = () => {
         domUpdates.displayDashboard();
         domUpdates.updateTotalSpent();
       })
+  } else {
+    domUpdates.showLoginErrorMessage()
   }
 }
 
@@ -71,6 +73,19 @@ const bookARoom = (e) => {
     domUpdates.displayBookedMessage();
     // individualRoom.classList.add('white-shadow-transform');
 
+
+    // postBooking(roomToPost)
+    //   .then(data=> {
+    //     fetchBookings()
+    //       .then(data => {
+    //         booksData = data.bookings
+    //         displayCustomerInfo(bookingsData, roomsData);
+    //         setTimeout(() => {
+    //           domUpdates.displayAvailableRooms(roomsData, bookingsData)
+    //         }, 1500)
+    //       })
+    //   })
+
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
@@ -80,6 +95,7 @@ const bookARoom = (e) => {
         }, 1500)
       })
     })
+
   }
 }
 

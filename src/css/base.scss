@@ -32,14 +32,17 @@ button:hover,
 }
 
 .book-button:hover,
-.login-button:hover {
+.enabled:hover, {
   cursor: pointer;
   text-decoration-color: $white;
 }
 
+.enabled:hover, {
+  background-color: $dark-green;
+}
+
 .book-button,
 .login-button {
-  // cursor: pointer;
   color: $white;
   background-color: transparent;
   border: none;
@@ -48,13 +51,25 @@ button:hover,
 }
 
 .login-button {
-  font-size: 15px;
+  font-size: 18px;
+  padding: 7px;
   font-family: $primary-font;
-  box-shadow: $drop-shadow-green-around;
+  background-color: $dark-green;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: $light-green;
 }
 
 .flex-column {
-  @include flex-style(column, center)
+  @include flex-style(column, center);
+}
+
+.error-handle {
+  margin-top: 20px;
+  color: $white;
+  text-align: center;
 }
 
 .hidden {

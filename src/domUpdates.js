@@ -13,6 +13,9 @@ let date;
 
 
 //QUERY SELECTORS
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const loginButton = document.getElementById('loginButton');
 const selectDateButton = document.getElementById('selectDateButton');
 const selectedDate = document.getElementById('calendarDate');
 const availableRoomsSection = document.getElementById('roomDisplaySection');
@@ -22,11 +25,10 @@ const greeting = document.querySelector('.greeting');
 const toBookDisplay = document.querySelector('.to-book-display');
 const roomTypeContainer = document.querySelector('.room-type-container-js');
 const largeLogo = document.querySelector('.large-logo-js');
+const errorHandleMessage = document.querySelector('.error-handle-js');
+const availableRoomsContainer = document.querySelector('.bookings-list-container-js');
 // const individualRooms = document.querySelector('.individual-room-cards-js');
 
-const username = document.getElementById('username');
-const password = document.getElementById('password');
-const loginButton = document.getElementById('loginButton');
 
 const loginDisplay = document.querySelector('.login-display-js');
 const dashboard = document.querySelector('.customer-display-js');
@@ -70,8 +72,8 @@ let domUpdates = {
       const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
       })
-      document.querySelector('.bookings-list-container-js').innerHTML += `
-      <section class='booked-info-card'>
+      availableRoomsContainer.innerHTML += `
+      <section class='booked-info-card' tabindex="0">
         <p>Booking For ${booking.date}</p>
         <p>Confirmation ID: ${booking.id}</p>
         <p>Room Type: ${foundRoom.roomType}</p>
@@ -148,8 +150,14 @@ let domUpdates = {
   },
 
   displayBookedMessage() {
+
+
     greeting.innerHTML = "THANKS FOR BOOKING WITH US!"
     availableRoomsSection.innerHTML += ''
+  },
+
+  showLoginErrorMessage() {
+    errorHandleMessage.innerText = "Please enter a valid username and password."
   }
 }
 
@@ -162,6 +170,7 @@ export {
   username,
   password,
   loginButton,
+  errorHandleMessage,
   // individualRoom,
   date,
   hide,
