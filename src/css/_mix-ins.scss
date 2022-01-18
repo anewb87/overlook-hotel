@@ -18,3 +18,8 @@
   flex-direction: $direction;
   justify-content: $content;
 }
+
+@mixin underline-effect() {
+  text-decoration: underline 0.15em $transparent;
+  transition: text-decoration-color 400ms;
+}

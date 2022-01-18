@@ -18,7 +18,20 @@ body {
   background-size: cover;
 }
 
+.flex-column {
+  @include flex-style(column, center);
+}
+
+.error-handle {
+  margin-top: 20px;
+  color: $white;
+  text-align: center;
+}
+
+//BUTTONS
+
 button,
+.login-button,
 .select-date-button {
   font-family: $primary-font;
   padding: 5px;
@@ -31,45 +44,28 @@ button:hover,
   background-color: $dark-green;
 }
 
+.book-button, {
+  @include underline-effect;
+  color: $white;
+  background-color: transparent;
+  border: none;
+}
+
+.login-button {
+  @include underline-effect;
+  font-size: 18px;
+  color: $white;
+  background-color: $light-green;
+}
+
 .book-button:hover,
-.enabled:hover, {
+.login-button:hover, {
   cursor: pointer;
   text-decoration-color: $white;
 }
 
-.enabled:hover, {
+.login-button:hover {
   background-color: $dark-green;
-}
-
-.book-button,
-.login-button {
-  color: $white;
-  background-color: transparent;
-  border: none;
-  text-decoration: underline 0.15em $transparent;
-  transition: text-decoration-color 400ms;
-}
-
-.login-button {
-  font-size: 18px;
-  padding: 7px;
-  font-family: $primary-font;
-  background-color: $dark-green;
-}
-
-.disabled {
-  cursor: not-allowed;
-  background-color: $light-green;
-}
-
-.flex-column {
-  @include flex-style(column, center);
-}
-
-.error-handle {
-  margin-top: 20px;
-  color: $white;
-  text-align: center;
 }
 
 .hidden {

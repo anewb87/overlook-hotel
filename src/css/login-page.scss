@@ -6,10 +6,11 @@
 .scale-in-center {
 	-webkit-animation: scale-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
 	animation: scale-in-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+	text-align: center;
 }
 
 .login-title {
-  font-size: 180px;
+  font-size: 160px;
 	color: $opaque-white;
 }
 
