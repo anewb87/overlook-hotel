@@ -63,7 +63,7 @@ let domUpdates = {
 
   populateCustomerBookings(roomsData) {
 
-    let sortedBookings = currentCustomer.bookings.sort((a,b) => {
+    let sortedBookings = currentCustomer.bookings.sort((a, b) => {
       return new Date(a.date) - new Date(b.date)
     })
     sortedBookings.forEach((booking) => {
@@ -156,7 +156,6 @@ let domUpdates = {
 export {
   domUpdates,
   selectDateButton,
-  selectedDate,
   roomTypeButton,
   bookButtons,
   roomTypeContainer,

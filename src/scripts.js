@@ -12,7 +12,6 @@ import {
 import {
   domUpdates,
   selectDateButton,
-  selectedDate,
   roomTypeButton,
   bookButtons,
   roomTypeContainer,
@@ -33,7 +32,6 @@ import './images/natural-beauty.png';
 let customersData;
 let roomsData;
 let bookingsData;
-let customerIndex;
 let currentCustomer;
 
 
@@ -43,19 +41,16 @@ const fetchAllData = (userID) => {
 }
 
 const validateCustomerLogin = () => {
-
   const customerLoginNumber = parseInt(username.value.substring(8))
-
   if (customerLoginNumber > 0 && customerLoginNumber < 51 && password.value === "overlook2021") {
     fetchAllData(customerLoginNumber)
-    .then(data => {
-      [customersData, roomsData, bookingsData] = [data[0], data[1].rooms, data[2].bookings]
-
-      currentCustomer = new Customer(customersData);
-      displayCustomerInfo(bookingsData, roomsData);
-      domUpdates.displayDashboard();
-      domUpdates.updateTotalSpent();
-    })
+      .then(data => {
+        [customersData, roomsData, bookingsData] = [data[0], data[1].rooms, data[2].bookings]
+        currentCustomer = new Customer(customersData);
+        displayCustomerInfo(bookingsData, roomsData);
+        domUpdates.displayDashboard();
+        domUpdates.updateTotalSpent();
+      })
   }
 }
 
@@ -66,7 +61,6 @@ const displayCustomerInfo = (bookingsData, roomsData) => {
   domUpdates.updateTotalSpent();
 }
 
-
 const bookARoom = (e) => {
   if (e.target.classList.contains('book-button-js')) {
     const roomToPost = {
@@ -74,7 +68,6 @@ const bookARoom = (e) => {
       date: date,
       roomNumber: parseInt(e.target.parentNode.id)
     }
-
     domUpdates.displayBookedMessage();
     // individualRoom.classList.add('white-shadow-transform');
 
@@ -82,7 +75,6 @@ const bookARoom = (e) => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
         displayCustomerInfo(bookingsData, roomsData);
-        // getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
         setTimeout(() => {
           domUpdates.displayAvailableRooms(roomsData, bookingsData)
         }, 1500)
@@ -99,7 +91,6 @@ const createBookButton = (bookButtons) => {
   });
 }
 
-
 //EVENT LISTENERS
 loginButton.addEventListener('click', function(e) {
   e.preventDefault();
@@ -109,12 +100,12 @@ loginButton.addEventListener('click', function(e) {
 selectDateButton.addEventListener('click', function() {
   domUpdates.displayAvailableRooms(roomsData, bookingsData);
   show([roomTypeContainer]);
-});
+})
 
 roomTypeButton.addEventListener('click', function(e) {
   e.preventDefault()
   domUpdates.displayFilteredRooms()
-});
+})
 
 
 export {
