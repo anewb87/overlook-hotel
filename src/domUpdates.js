@@ -59,9 +59,18 @@ let domUpdates = {
     document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
   },
 
+  formatDate(date) {
+    const mm = date.slice(5, 7)
+    const dd = date.slice(8, 10)
+    const yyyy = date.slice(0, 4)
+    return `${mm}/${dd}/${yyyy}`;
+  },
+
   populateCustomerBookings(roomsData) {
-    let sortedBookings = currentCustomer.bookings.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date)
+    const sortedBookings = currentCustomer.bookings.sort((a, b) => {
+      const aDate = domUpdates.formatDate(a.date);
+      const bDate = domUpdates.formatDate(b.date);
+      return new Date(aDate) - new Date(bDate)
     })
     sortedBookings.forEach((booking) => {
       const foundRoom = roomsData.find((room) => {
@@ -69,7 +78,7 @@ let domUpdates = {
       })
       availableRoomsContainer.innerHTML += `
       <section class='booked-info-card' tabindex="0">
-        <p>Booking For ${booking.date}</p>
+        <p>Booking For ${domUpdates.formatDate(booking.date)}</p>
         <p>Confirmation ID: ${booking.id}</p>
         <p>Room Type: ${foundRoom.roomType}</p>
         <p>Cost: $ ${foundRoom.costPerNight}</p>
@@ -84,8 +93,11 @@ let domUpdates = {
     greeting.innerText = "Available Rooms"
     availableRoomsSection.innerHTML = '';
 
-    const formattedDate = new Date(selectedDate.value)
-    const today = new Date()
+    const formattedDate = new Date(selectedDate.value);
+    const today = new Date();
+
+    console.log("selected date", formattedDate)
+    console.log("today date", today)
 
     if (formattedDate >= today) {
       date = selectedDate.value.split('-').join('/');
