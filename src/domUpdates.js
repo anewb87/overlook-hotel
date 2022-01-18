@@ -28,7 +28,7 @@ const loginDisplay = document.querySelector('.login-display-js');
 const dashboard = document.querySelector('.customer-display-js');
 const header = document.querySelector('.header-js');
 const totalSpent = document.querySelector('.total-js');
-const errorHandleMessage = document.querySelector('.error-handle-js');
+const errorMessageDisplay = document.querySelector('.error-handle-js');
 const roomTypeDropdown = document.querySelector(".dropdown-js").value = '';
 
 
@@ -153,7 +153,7 @@ let domUpdates = {
   showLoginErrorMessage() {
     document.querySelector('.username-input-js').value = '';
     document.querySelector('.password-input-js').value = '';
-    errorHandleMessage.innerText = "please enter a valid username and password";
+    errorMessageDisplay.innerText = "please enter a valid username and password";
   }
 }
 
@@ -161,13 +161,9 @@ export {
   domUpdates,
   selectDateButton,
   roomTypeButton,
-  bookButtons,
-  roomTypeContainer,
   username,
   password,
   loginButton,
-  errorHandleMessage,
+  errorMessageDisplay,
   date,
-  hide,
-  show,
 }

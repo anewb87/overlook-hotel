@@ -69,26 +69,13 @@ const bookARoom = (e) => {
     }
     domUpdates.displayBookedMessage();
 
-
-    // postBooking(roomToPost)
-    //   .then(data=> {
-    //     fetchBookings()
-    //       .then(data => {
-    //         booksData = data.bookings
-    //         displayCustomerInfo(bookingsData, roomsData);
-    //         setTimeout(() => {
-    //           domUpdates.displayAvailableRooms(roomsData, bookingsData)
-    //         }, 1500)
-    //       })
-    //   })
-
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
         displayCustomerInfo(bookingsData, roomsData);
         setTimeout(() => {
           domUpdates.displayAvailableRooms(roomsData, bookingsData)
-        }, 1500)
+        }, 2000)
       }).catch(error => errorMessage(error))
     })
   }

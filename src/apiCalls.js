@@ -1,4 +1,4 @@
-import {errorHandleMessage} from './domUpdates'
+import {errorMessageDisplay} from './domUpdates'
 
 let fetchSingleCustomer = (userID) => {
   return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
@@ -34,7 +34,7 @@ const errorHandle = (response) => {
 
  const errorMessage = (error) => {
  setTimeout(() => {
-   errorHandleMessage.innerText = `Error: ${error.message}`
+   errorMessageDisplay.innerText = `Error: ${error.message}`
  }, 2500)
 }
 
