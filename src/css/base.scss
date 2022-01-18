@@ -2,6 +2,7 @@
 @import '_mix-ins.scss';
 @import '_keyframes.scss';
 @import 'reset.scss';
+@import 'login-page';
 @import 'header';
 @import 'customer-dashboard';
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&display=swap');
@@ -30,10 +31,45 @@ button:hover,
   background-color: $dark-green;
 }
 
+.book-button:hover,
+.enabled:hover, {
+  cursor: pointer;
+  text-decoration-color: $white;
+}
+
+.enabled:hover, {
+  background-color: $dark-green;
+}
+
+.book-button,
+.login-button {
+  color: $white;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline 0.15em $transparent;
+  transition: text-decoration-color 400ms;
+}
+
+.login-button {
+  font-size: 18px;
+  padding: 7px;
+  font-family: $primary-font;
+  background-color: $dark-green;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: $light-green;
+}
+
 .flex-column {
-  @include flex-style(column, center)
-  // display: flex;
-  // flex-direction: column;
+  @include flex-style(column, center);
+}
+
+.error-handle {
+  margin-top: 20px;
+  color: $white;
+  text-align: center;
 }
 
 .hidden {

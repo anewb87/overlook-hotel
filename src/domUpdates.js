@@ -13,6 +13,9 @@ let date;
 
 
 //QUERY SELECTORS
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const loginButton = document.getElementById('loginButton');
 const selectDateButton = document.getElementById('selectDateButton');
 const selectedDate = document.getElementById('calendarDate');
 const availableRoomsSection = document.getElementById('roomDisplaySection');
@@ -22,11 +25,10 @@ const greeting = document.querySelector('.greeting');
 const toBookDisplay = document.querySelector('.to-book-display');
 const roomTypeContainer = document.querySelector('.room-type-container-js');
 const largeLogo = document.querySelector('.large-logo-js');
+const errorHandleMessage = document.querySelector('.error-handle-js');
+const availableRoomsContainer = document.querySelector('.bookings-list-container-js');
 // const individualRooms = document.querySelector('.individual-room-cards-js');
 
-const username = document.getElementById('username');
-const password = document.getElementById('password');
-const loginButton = document.getElementById('loginButton');
 
 const loginDisplay = document.querySelector('.login-display-js');
 const dashboard = document.querySelector('.customer-display-js');
@@ -70,8 +72,8 @@ let domUpdates = {
       const foundRoom = roomsData.find((room) => {
         return room.number === booking.roomNumber
       })
-      document.querySelector('.bookings-list-container-js').innerHTML += `
-      <section class='booked-info-card'>
+      availableRoomsContainer.innerHTML += `
+      <section class='booked-info-card' tabindex="0">
         <p>Booking For ${booking.date}</p>
         <p>Confirmation ID: ${booking.id}</p>
         <p>Room Type: ${foundRoom.roomType}</p>
@@ -97,7 +99,7 @@ let domUpdates = {
       if (currentCustomer.availableRooms.length > 0) {
         currentCustomer.availableRooms.forEach((room) => {
           availableRoomsSection.innerHTML += `
-          <section class='individual-room-cards' id="${room.number}">
+          <section class="individual-room-cards" tabindex="0" id="${room.number}">
           <p>${room.roomType}</p>
           <p>has a bidet: ${room.bidet}</p>
           <p>${room.bedSize} size bed</p>
@@ -148,8 +150,13 @@ let domUpdates = {
   },
 
   displayBookedMessage() {
-    greeting.innerHTML = "THANKS FOR BOOKING WITH US!"
-    availableRoomsSection.innerHTML += ''
+    greeting.innerHTML = "Thanks for booking with us!"
+    availableRoomsSection.innerHTML = `<img class="large-logo large-logo-js" src="images/natural-beauty.png" alt="large hood overlook hotel logo"/>`
+
+  },
+
+  showLoginErrorMessage() {
+    errorHandleMessage.innerText = "Please enter a valid username and password."
   }
 }
 
@@ -162,6 +169,7 @@ export {
   username,
   password,
   loginButton,
+  errorHandleMessage,
   // individualRoom,
   date,
   hide,

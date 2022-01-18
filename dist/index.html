@@ -14,13 +14,19 @@
     </header>
     <main>
       <section class="login-display-js login-display">
-        <form>
-        <label for="username">username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">password:</label><br>
-        <input type="text" id="password" name="password" required><br><br>
-        <input type="submit" id="loginButton" value="Login">
-      </form>
+        <div>
+          <h1 class="tracking-in-expand login-title">Hood<br /> Overlook<br /> Hotel</h1>
+        </div>
+        <div>
+          <form class="center scale-in-center">
+          <label class="input-label" for="username">username</label><br>
+          <input class="username-input" type="text" id="username" name="username" required><br>
+          <label class="input-label" for="password">password</label><br>
+          <input class="password-input" type="text" id="password" name="password" required><br><br>
+          <input class="login-button" type="submit" id="loginButton" value="LOGIN">
+          </form>
+          <p class="error-handle-js error-handle"></p>
+        </div>
       </section>
       <section class="customer-display-js customer-display hidden">
         <aside class="booking-history-section styalized-box">
@@ -48,13 +54,12 @@
                   <option value="residential suite">residential suite</option>
                 </select><br />
                 <button id="selectTypeButton">select</button>
-                <p class="errorHandle"></p>
               </div>
             </div>
             <div class="available-list-container" tabindex="0">
               <div>
                 <p class="greeting"></p>
-                <img class="large-logo large-logo-js" src="images/natural-beauty.png" alt="large hood overlook hotel logo" width=600/>
+                <img class="large-logo large-logo-js" src="images/natural-beauty.png" alt="large hood overlook hotel logo"/>
               </div>
               <div class="to-book-display hidden">
                 <section  id="roomDisplaySection"></section>

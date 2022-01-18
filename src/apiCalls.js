@@ -1,3 +1,5 @@
+import {errorHandleMessage} from './domUpdates'
+
 let fetchCustomers = () => {
   return fetch("http://localhost:3001/api/v1/customers")
     .then(response => errorHandle(response))
@@ -30,8 +32,10 @@ let postBooking = (booking) => {
 
 const errorHandle = (response) => {
   if (!response.ok) {
-    const errorHandleMessage = document.querySelector('.errorHandle');
     errorHandleMessage.innerText = "Well shoot, that trail did not lead to our front door. Please try again."
+    setTimeout(() => {
+      errorHandleMessage.innerText = ""
+    }, 2500)
   } else {
     return response.json()
   }

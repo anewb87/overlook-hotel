@@ -68,15 +68,6 @@
   margin-left: 20px;
 }
 
-.book-button {
-  cursor: pointer;
-  color: $white;
-  background-color: transparent;
-  border: none;
-  text-decoration: underline 0.15em $transparent;
-  transition: text-decoration-color 400ms;
-}
-
 .book-button:hover {
   cursor: pointer;
   text-decoration-color: $white;
