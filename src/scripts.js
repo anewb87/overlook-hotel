@@ -3,6 +3,7 @@ import './css/base.scss';
 import Customer from '../src/classes/Customer';
 import {
   fetchCustomers,
+  fetchSingleCustomer,
   fetchRooms,
   fetchBookings,
   postBooking
@@ -11,11 +12,13 @@ import {
 import {
   domUpdates,
   selectDateButton,
-  selectedDate,
   roomTypeButton,
   bookButtons,
   roomTypeContainer,
+  username,
+  password,
   // individualRoom,
+  loginButton,
   date,
   hide,
   show
@@ -29,37 +32,33 @@ import './images/natural-beauty.png';
 let customersData;
 let roomsData;
 let bookingsData;
-let customerIndex;
 let currentCustomer;
 
 
 //FUNCTIONS
-Promise.all([fetchCustomers(), fetchRooms(), fetchBookings()])
-  .then(data => {
-    [customersData, roomsData, bookingsData] = [data[0].customers, data[1].rooms, data[2].bookings]
-  })
-  .then(() => {
-    instantiateCustomer(customersData)
-    getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
-  })
-  .catch(error => console.log(error))
-
-
-const instantiateCustomer = (customersData) => {
-  customerIndex = getRandomIndex(customersData)
-  currentCustomer = new Customer(customersData[customerIndex]);
-  return currentCustomer
+const fetchAllData = (userID) => {
+  return Promise.all([fetchSingleCustomer(userID), fetchRooms(), fetchBookings()])
 }
 
-const getCustomerInfo = (customersData, bookingsData, roomsData, currentCustomer) => {
+const validateCustomerLogin = () => {
+  const customerLoginNumber = parseInt(username.value.substring(8))
+  if (customerLoginNumber > 0 && customerLoginNumber < 51 && password.value === "overlook2021") {
+    fetchAllData(customerLoginNumber)
+      .then(data => {
+        [customersData, roomsData, bookingsData] = [data[0], data[1].rooms, data[2].bookings]
+        currentCustomer = new Customer(customersData);
+        displayCustomerInfo(bookingsData, roomsData);
+        domUpdates.displayDashboard();
+        domUpdates.updateTotalSpent();
+      })
+  }
+}
+
+const displayCustomerInfo = (bookingsData, roomsData) => {
   currentCustomer.getCustomerBookings(bookingsData);
   currentCustomer.getTotalSpent(roomsData);
-  domUpdates.populateCustomerBookings(currentCustomer, roomsData);
-  domUpdates.welcomeUser();
-}
-
-const getRandomIndex = (array) => {
-  return Math.floor(Math.random() * array.length);
+  domUpdates.populateCustomerBookings(roomsData);
+  domUpdates.updateTotalSpent();
 }
 
 const bookARoom = (e) => {
@@ -69,16 +68,15 @@ const bookARoom = (e) => {
       date: date,
       roomNumber: parseInt(e.target.parentNode.id)
     }
-
     domUpdates.displayBookedMessage();
     // individualRoom.classList.add('white-shadow-transform');
 
     postBooking(roomToPost).then(data => {
       fetchBookings().then(data => {
         bookingsData = data.bookings
-        getCustomerInfo(customersData, bookingsData, roomsData, currentCustomer)
+        displayCustomerInfo(bookingsData, roomsData);
         setTimeout(() => {
-          domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData)
+          domUpdates.displayAvailableRooms(roomsData, bookingsData)
         }, 1500)
       })
     })
@@ -93,16 +91,22 @@ const createBookButton = (bookButtons) => {
   });
 }
 
-
 //EVENT LISTENERS
-selectDateButton.addEventListener('click', function() {
-  domUpdates.displayAvailableRooms(currentCustomer, roomsData, bookingsData);
-  show([roomTypeContainer]);
-});
+loginButton.addEventListener('click', function(e) {
+  e.preventDefault();
+  validateCustomerLogin();
+})
 
-roomTypeButton.addEventListener('click', function() {
+selectDateButton.addEventListener('click', function() {
+  domUpdates.displayAvailableRooms(roomsData, bookingsData);
+  show([roomTypeContainer]);
+})
+
+roomTypeButton.addEventListener('click', function(e) {
+  e.preventDefault()
   domUpdates.displayFilteredRooms()
 })
+
 
 export {
   currentCustomer,

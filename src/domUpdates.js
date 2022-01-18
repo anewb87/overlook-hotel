@@ -24,9 +24,18 @@ const roomTypeContainer = document.querySelector('.room-type-container-js');
 const largeLogo = document.querySelector('.large-logo-js');
 // const individualRooms = document.querySelector('.individual-room-cards-js');
 
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const loginButton = document.getElementById('loginButton');
+
+const loginDisplay = document.querySelector('.login-display-js');
+const dashboard = document.querySelector('.customer-display-js');
+const header = document.querySelector('.header-js');
+
+const totalSpent = document.querySelector('.total-js');
+
 
 //FUNCTIONS
-
 const show = (elements) => {
   elements.forEach(element => {
     element.classList.remove('hidden');
@@ -39,18 +48,22 @@ const hide = (elements) => {
   });
 }
 
-
 //DOM UPDATES OBJECT
 let domUpdates = {
 
-  welcomeUser() {
-    document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
-    document.querySelector('.total-js').innerText = `My Total: $${currentCustomer.totalSpent}`
+  updateTotalSpent() {
+    totalSpent.innerText = `My Total: $${currentCustomer.totalSpent}`
   },
 
-  populateCustomerBookings(currentCustomer, roomsData) {
+  displayDashboard() {
+    hide([loginDisplay]);
+    show([header, dashboard]);
+    document.querySelector('.user-name-js').innerHTML = `Welcome, <br /> ${currentCustomer.name}`
+  },
 
-    let sortedBookings = currentCustomer.bookings.sort((a,b) => {
+  populateCustomerBookings(roomsData) {
+
+    let sortedBookings = currentCustomer.bookings.sort((a, b) => {
       return new Date(a.date) - new Date(b.date)
     })
     sortedBookings.forEach((booking) => {
@@ -68,7 +81,7 @@ let domUpdates = {
     })
   },
 
-  displayAvailableRooms(currentCustomer, roomsData, bookingsData) {
+  displayAvailableRooms(roomsData, bookingsData) {
     hide([largeLogo]);
     show([toBookDisplay]);
     greeting.innerText = "Available Rooms"
@@ -110,6 +123,7 @@ let domUpdates = {
     hide([largeLogo]);
     availableRoomsSection.innerHTML = '';
     greeting.innerText = 'Available Rooms';
+
     currentCustomer.filterRoomsByType(roomType.value);
 
     if (currentCustomer.filteredRooms.length > 0) {
@@ -142,10 +156,12 @@ let domUpdates = {
 export {
   domUpdates,
   selectDateButton,
-  selectedDate,
   roomTypeButton,
   bookButtons,
   roomTypeContainer,
+  username,
+  password,
+  loginButton,
   // individualRoom,
   date,
   hide,
