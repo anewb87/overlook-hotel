@@ -1,8 +1,6 @@
 //IMPORTS
 import {
   currentCustomer,
-  roomsData,
-  bookingsData,
   createBookButton
 } from './scripts'
 
@@ -25,16 +23,13 @@ const greeting = document.querySelector('.greeting');
 const toBookDisplay = document.querySelector('.to-book-display');
 const roomTypeContainer = document.querySelector('.room-type-container-js');
 const largeLogo = document.querySelector('.large-logo-js');
-const errorHandleMessage = document.querySelector('.error-handle-js');
 const availableRoomsContainer = document.querySelector('.bookings-list-container-js');
-// const individualRooms = document.querySelector('.individual-room-cards-js');
-
-
 const loginDisplay = document.querySelector('.login-display-js');
 const dashboard = document.querySelector('.customer-display-js');
 const header = document.querySelector('.header-js');
-
 const totalSpent = document.querySelector('.total-js');
+const errorHandleMessage = document.querySelector('.error-handle-js');
+const roomTypeDropdown = document.querySelector(".dropdown-js").value = '';
 
 
 //FUNCTIONS
@@ -50,6 +45,7 @@ const hide = (elements) => {
   });
 }
 
+
 //DOM UPDATES OBJECT
 let domUpdates = {
 
@@ -64,7 +60,6 @@ let domUpdates = {
   },
 
   populateCustomerBookings(roomsData) {
-
     let sortedBookings = currentCustomer.bookings.sort((a, b) => {
       return new Date(a.date) - new Date(b.date)
     })
@@ -92,7 +87,7 @@ let domUpdates = {
     const formattedDate = new Date(selectedDate.value)
     const today = new Date()
 
-    if (formattedDate > today) {
+    if (formattedDate >= today) {
       date = selectedDate.value.split('-').join('/');
       currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
 
@@ -109,12 +104,13 @@ let domUpdates = {
           </section>
           `
         });
+        show([roomTypeContainer])
       } else {
         greeting.innerText = "We fiercely apologize that we have no rooms matching your search. Our company credit card number is 8675309999999, feel free to buy yourself a puppy. Or perhaps a yacht. Maybe a night at the hotel down the road? Our sincerest apologies and happy trails!"
       }
 
     } else {
-      greeting.innerText = "As much as we'd love to Marty McFly this situation, grab that DeLorean and point to toward today or a future date."
+      greeting.innerText = "As much as we'd love to Marty McFly this situation, grab that DeLorean and point it toward today or a future date."
     }
 
     bookButtons = document.querySelectorAll('.book-button-js');
@@ -152,11 +148,12 @@ let domUpdates = {
   displayBookedMessage() {
     greeting.innerHTML = "Thanks for booking with us!"
     availableRoomsSection.innerHTML = `<img class="large-logo large-logo-js" src="images/natural-beauty.png" alt="large hood overlook hotel logo"/>`
-
   },
 
   showLoginErrorMessage() {
-    errorHandleMessage.innerText = "Please enter a valid username and password."
+    document.querySelector('.username-input-js').value = '';
+    document.querySelector('.password-input-js').value = '';
+    errorHandleMessage.innerText = "please enter a valid username and password";
   }
 }
 
@@ -170,7 +167,6 @@ export {
   password,
   loginButton,
   errorHandleMessage,
-  // individualRoom,
   date,
   hide,
   show,

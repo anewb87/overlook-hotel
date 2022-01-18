@@ -1,10 +1,5 @@
 import {errorHandleMessage} from './domUpdates'
 
-let fetchCustomers = () => {
-  return fetch("http://localhost:3001/api/v1/customers")
-    .then(response => errorHandle(response))
-}
-
 let fetchSingleCustomer = (userID) => {
   return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
     .then(response => errorHandle(response))
@@ -27,25 +22,20 @@ let postBooking = (booking) => {
     headers: {"Content-Type": "application/json"}
   })
     .then(response => errorHandle(response))
-    // .catch(error => displayErrorMessage(error))
 }
 
 const errorHandle = (response) => {
   if (!response.ok) {
-    errorHandleMessage.innerText = "Well shoot, that trail did not lead to our front door. Please try again."
-    setTimeout(() => {
-      errorHandleMessage.innerText = ""
-    }, 2500)
+    throw new Error("Well shoot, that trail did not lead to our front door. Please reload and try again.")
   } else {
     return response.json()
   }
 }
 
-// const displayErrorMessage = (error) => {
-//   const errorHandleMessage = document.querySelector('.errorHandle');
-//   errorHandleMessage.innerText = "Please check your connection, something went wrong."
-// }
+ const errorMessage = (error) => {
+ setTimeout(() => {
+   errorHandleMessage.innerText = `Error: ${error.message}`
+ }, 2500)
+}
 
-//missing a catch in other place(s)? This isn't correct. Circle back
-
-export {fetchCustomers, fetchSingleCustomer, fetchRooms, fetchBookings, postBooking}
+export {fetchSingleCustomer, fetchRooms, fetchBookings, postBooking, errorMessage}

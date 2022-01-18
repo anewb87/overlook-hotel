@@ -2,26 +2,21 @@
 import './css/base.scss';
 import Customer from '../src/classes/Customer';
 import {
-  fetchCustomers,
   fetchSingleCustomer,
   fetchRooms,
   fetchBookings,
-  postBooking
+  postBooking,
+  errorMessage
 } from './apiCalls';
 
 import {
   domUpdates,
   selectDateButton,
   roomTypeButton,
-  bookButtons,
-  roomTypeContainer,
   username,
   password,
-  // individualRoom,
   loginButton,
   date,
-  hide,
-  show
 } from './domUpdates';
 
 import './images/large-logo.png';
@@ -41,8 +36,9 @@ const fetchAllData = (userID) => {
 }
 
 const validateCustomerLogin = () => {
-  const customerLoginNumber = parseInt(username.value.substring(8))
-  if (customerLoginNumber > 0 && customerLoginNumber < 51 && password.value === "overlook2021") {
+  const loginName = username.value;
+  const customerLoginNumber = parseInt(loginName.substring(8))
+  if (loginName.startsWith("customer") && customerLoginNumber > 0 && customerLoginNumber < 51 && password.value === "overlook2021") {
     fetchAllData(customerLoginNumber)
       .then(data => {
         [customersData, roomsData, bookingsData] = [data[0], data[1].rooms, data[2].bookings]
@@ -51,6 +47,7 @@ const validateCustomerLogin = () => {
         domUpdates.displayDashboard();
         domUpdates.updateTotalSpent();
       })
+      .catch(error => errorMessage(error))
   } else {
     domUpdates.showLoginErrorMessage()
   }
@@ -71,7 +68,6 @@ const bookARoom = (e) => {
       roomNumber: parseInt(e.target.parentNode.id)
     }
     domUpdates.displayBookedMessage();
-    // individualRoom.classList.add('white-shadow-transform');
 
 
     // postBooking(roomToPost)
@@ -93,9 +89,8 @@ const bookARoom = (e) => {
         setTimeout(() => {
           domUpdates.displayAvailableRooms(roomsData, bookingsData)
         }, 1500)
-      })
+      }).catch(error => errorMessage(error))
     })
-
   }
 }
 
@@ -115,12 +110,11 @@ loginButton.addEventListener('click', function(e) {
 
 selectDateButton.addEventListener('click', function() {
   domUpdates.displayAvailableRooms(roomsData, bookingsData);
-  show([roomTypeContainer]);
 })
 
 roomTypeButton.addEventListener('click', function(e) {
-  e.preventDefault()
-  domUpdates.displayFilteredRooms()
+  e.preventDefault();
+  domUpdates.displayFilteredRooms();
 })
 
 

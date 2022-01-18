@@ -18,11 +18,11 @@
           <h1 class="tracking-in-expand login-title">Hood<br /> Overlook<br /> Hotel</h1>
         </div>
         <div>
-          <form class=" scale-in-center">
+          <form class="scale-in-center">
           <label class="input-label" for="username">username</label><br>
-          <input class="username-input" type="text" id="username" name="username" required><br>
+          <input class="username-input username-input-js" type="text" id="username" name="username" required><br>
           <label class="input-label" for="password">password</label><br>
-          <input class="password-input" type="text" id="password" name="password" required><br><br>
+          <input class="password-input password-input-js" type="text" id="password" name="password" required><br><br>
           <input class="login-button" type="submit" id="loginButton" value="LOGIN">
           </form>
           <p class="error-handle-js error-handle"></p>
@@ -40,13 +40,13 @@
             <div class="center">
               <div>
                 <label class="selection-heading"for="calendarDate" >select a date</label><br/>
-                <input type="date" id="calendarDate"
+                <input class="calendar-input" type="date" id="calendarDate"
                  name="checkin" min="2022-01-19" max="2022-06-01" value="2022-01-19">
                 <input type="submit" id="selectDateButton" class="select-date-button" value="search">
               </div>
               <div class="room-type-container room-type-container-js hidden">
                 <p class="selection-heading">select room type</p>
-                <select name="room-types" class="dropdown" id="roomTypes">
+                <select name="room-types" class="dropdown dropdown-js" id="roomTypes">
                   <label for="room-types">filter by room type</label>
                   <option value="junior suite">junior suite</option>
                   <option value="single room">single room</option>
