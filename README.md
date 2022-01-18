@@ -1,6 +1,6 @@
 # MOD2 HOOD OVERLOOK HOTEL
-This is an application built as the final project for Module 2 of the [Turing School of Software Design](https://turing.edu/) frontend program.
-It allows users (from an API) to log into their account at the Hood Overlook Hotel and review their past bookings and the amount they've spent on those bookings. A customer can also book a room for the current or an upcoming date and see their updated bookings and amount spent.
+This application was built as the final project for Module 2 of the [Turing School of Software Design](https://turing.edu/) frontend program.
+It allows users (from an API) to log into their account at the Hood Overlook Hotel and review their past bookings and the amount they've spent on those bookings. A customer can also use a calendar to book a room and see their updated bookings and amount spent.
 
 
 ## TABLE OF CONTENTS
