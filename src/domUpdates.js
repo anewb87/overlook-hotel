@@ -95,11 +95,10 @@ let domUpdates = {
 
     const formattedDate = new Date(selectedDate.value);
     const today = new Date();
+    const fixToday = today.getDate();
+    const fixInputDate = formattedDate.getDate() + 1;
 
-    console.log("selected date", formattedDate)
-    console.log("today date", today)
-
-    if (formattedDate >= today) {
+    if (fixInputDate >= fixToday) {
       date = selectedDate.value.split('-').join('/');
       currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
 
