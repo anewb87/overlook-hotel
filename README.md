@@ -11,9 +11,32 @@ It allows users (from an API) to log into their account at the Hood Overlook Hot
 - [Authors/Links](#authorslinks)
 
 
-## ABSTRACT (WHAT, HOW, WHY)
-- 2-3 SENTENCES MAX PER WHAT/HOW/WHY
-- INCLUDE PLENTY OF GIFS OF WORKING PROJ
+## FEATURES
+- This application opens to a login page. To log in, a customer uses the following credentials:
+  username:
+  * customer## (## is any number between 01-50 and corresponds to a unique user)
+  * password: overlook2021
+
+![giphy](https://media.giphy.com/media/AHMAfp3nkg9PuSkVlJ/giphy.gif)
+
+- Upon logging in, a customer will be shown their dashboard. They will be shown:
+
+1. Past, present, and future bookings along with the total they've spent on rooms
+
+![gify](https://media.giphy.com/media/cKTlzy11wsGwaK4jXw/giphy.gif)
+
+2. A booking section where the customer can book rooms for today future dates. Additionally, they can filter their search by room type. When a room is booked, the customer's total spent increases by the room's price.
+
+![gify](https://media.giphy.com/media/CG0uYzCqvHJjD1QzIj/giphy.gif)
+
+3. If there are no rooms available, there will be a message to the user, guiding them to choose another day.
+
+
+4. If a user types in an incorrect user name or password, they will prompted to retry.
+
+
+
+- 100% Lighthouse Accessibility Audit Score
 
 ## FUTURE FEATURES
 - Add functionality so that a manager can log in as well as a customer. The manager could also see a dashboard, but theirs might show additional features such as the total revenue and occupancy percentages for specified dates. A manager could also add and delete bookings for customers.
