@@ -92,8 +92,9 @@ let domUpdates = {
     greeting.innerText = "Available Rooms"
     availableRoomsSection.innerHTML = '';
 
-    const formattedDate = new Date(selectedDate.value);
+    const formattedDate = new Date(selectedDate.value + "T00:00:00.000-07:00")
     const today = new Date();
+    today.setHours(0, 0, 0, 0)
 
     if (formattedDate >= today) {
       date = selectedDate.value.split('-').join('/');
