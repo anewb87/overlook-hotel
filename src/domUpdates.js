@@ -29,7 +29,6 @@ const dashboard = document.querySelector('.customer-display-js');
 const header = document.querySelector('.header-js');
 const totalSpent = document.querySelector('.total-js');
 const errorMessageDisplay = document.querySelector('.error-handle-js');
-const roomTypeDropdown = document.querySelector(".dropdown-js").value = '';
 
 
 //FUNCTIONS
@@ -95,10 +94,8 @@ let domUpdates = {
 
     const formattedDate = new Date(selectedDate.value);
     const today = new Date();
-    const fixToday = today.getDate();
-    const fixInputDate = formattedDate.getDate() + 1;
 
-    if (fixInputDate >= fixToday) {
+    if (formattedDate >= today) {
       date = selectedDate.value.split('-').join('/');
       currentCustomer.getAvailableRooms(date, roomsData, bookingsData);
 
@@ -121,7 +118,7 @@ let domUpdates = {
       }
 
     } else {
-      greeting.innerText = "As much as we'd love to Marty McFly this situation, grab that DeLorean and point it toward today or a future date."
+      greeting.innerText = "As much as we'd love to Marty McFly this situation, grab that DeLorean and point it toward a future date."
     }
 
     bookButtons = document.querySelectorAll('.book-button-js');
