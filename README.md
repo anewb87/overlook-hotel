@@ -4,7 +4,7 @@ It allows users (from an API) to log into their account at the Hood Overlook Hot
 
 
 ## TABLE OF CONTENTS
-- [Project Overview](#project-overview)
+- [Features](#features)
 - [Future Features](#future-features)
 - [Tech Stack](#technologies-used)
 - [Install Instructions](#instructions)
@@ -19,6 +19,9 @@ It allows users (from an API) to log into their account at the Hood Overlook Hot
 
 ![giphy](https://media.giphy.com/media/AHMAfp3nkg9PuSkVlJ/giphy.gif)
 
+- If a user types in an incorrect user name or password, they will prompted to retry.
+<img width="1428" alt="Screen Shot 2022-01-18 at 5 57 28 PM" src="https://user-images.githubusercontent.com/89421307/150043881-b888a91b-5783-42d8-af7b-65f01a865114.png">
+
 - Upon logging in, a customer will be shown their dashboard. They will be shown:
 
 1. Past, present, and future bookings along with the total they've spent on rooms
@@ -30,13 +33,7 @@ It allows users (from an API) to log into their account at the Hood Overlook Hot
 ![gify](https://media.giphy.com/media/CG0uYzCqvHJjD1QzIj/giphy.gif)
 
 3. If there are no rooms available, there will be a message to the user, guiding them to choose another day.
-
-
-4. If a user types in an incorrect user name or password, they will prompted to retry.
-
-
-
-- 100% Lighthouse Accessibility Audit Score
+<img width="1428" alt="Screen Shot 2022-01-18 at 5 56 59 PM" src="https://user-images.githubusercontent.com/89421307/150043870-88aa03d5-2188-4538-b4e1-d3b7c26576e7.png">
 
 ## FUTURE FEATURES
 - Add functionality so that a manager can log in as well as a customer. The manager could also see a dashboard, but theirs might show additional features such as the total revenue and occupancy percentages for specified dates. A manager could also add and delete bookings for customers.
